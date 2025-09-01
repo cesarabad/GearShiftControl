@@ -2,12 +2,12 @@
 
 namespace Services::Security {
 
-class SafetyChecker {
+	class SafetyChecker {
 
-public:
+	public:
 	
-	virtual ~SafetyChecker() = default;
-	virtual bool check() const = 0;
-};
+		virtual ~SafetyChecker() = default;
+		virtual bool check() const = 0;
+	};
 
 }
