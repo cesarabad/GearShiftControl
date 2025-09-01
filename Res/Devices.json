@@ -1,0 +1,7 @@
+[
+  {
+    "Symlink": "/dev/GearBoxArduino",
+    "Function": "GearboxControl",
+    "Description": "Arduino that is responsible for moving the servomotors that change gears in the gearbox"
+  }
+]
