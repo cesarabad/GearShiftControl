@@ -27,14 +27,14 @@
 ############################
 ## Directorios de build
 ############################
-/bin/
-/obj/
-/build/
-/out/
-/Debug/
-/Release/
-/x64/
-/x86/
+GearShiftControl/bin/
+GearShiftControl/obj/
+GearShiftControl/build/
+GearShiftControl/out/
+GearShiftControl/Debug/
+GearShiftControl/Release/
+GearShiftControl/x64/
+GearShiftControl/x86/
 
 ############################
 ## Visual Studio

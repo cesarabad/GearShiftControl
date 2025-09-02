@@ -8,7 +8,7 @@ namespace Services::Mapping {
     public:
         virtual ~JsonMapper() = default;
 
-        virtual T map(const std::string& json) const = 0;
+        virtual T deserialize(const std::string& json) const = 0;
     };
 
 }
