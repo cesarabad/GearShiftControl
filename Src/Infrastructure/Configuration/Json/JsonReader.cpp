@@ -6,9 +6,9 @@
 namespace Infrastructure::Configuration {
 
     std::string JsonReader::read() const {
-        std::ifstream file(filePath);
+        std::ifstream file(file_path_);
         if (!file.is_open()) {
-            throw std::runtime_error("Could not open JSON file: " + filePath);
+            throw std::runtime_error("Could not open JSON file: " + file_path_);
         }
 
         std::ostringstream buffer;

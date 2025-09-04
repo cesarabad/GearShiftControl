@@ -7,13 +7,17 @@ namespace Infrastructure::Configuration {
 	class JsonReader : public DataReader<std::string> {
 
 	protected:
-		const std::string filePath;
+		std::string file_path_;
 
 	public:
-		explicit JsonReader(const std::string& filePath) : filePath(filePath) {}
+		explicit JsonReader(const std::string& filePath) : file_path_(filePath) {}
 
 		~JsonReader() override = default;
 
 		std::string read() const override;
+
+		void set_path(const std::string& newPath) {
+			file_path_ = newPath;
+		}
 	};
 }
