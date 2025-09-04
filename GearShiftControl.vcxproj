@@ -22,6 +22,7 @@
     <None Include="Res\Simulation.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Infrastructure\Device\GearBoxControl\GearBoxControlDevice.h" />
     <ClInclude Include="Src\Core\Command\Command.h" />
     <ClInclude Include="Src\Core\Simulation\DeviceSimulator.h" />
     <ClInclude Include="Src\Infraestructure\Configuration\DataReader.h" />
@@ -38,6 +39,7 @@
     <ClInclude Include="Src\Services\Security\SafetyChecker.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Infrastructure\Device\GearBoxControl\GearBoxControlDevice.cpp" />
     <ClCompile Include="Src\App\Main.cpp" />
     <ClCompile Include="Src\Core\Model\Gear.h" />
     <ClCompile Include="Src\Infrastructure\Configuration\Json\JsonReader.cpp" />
