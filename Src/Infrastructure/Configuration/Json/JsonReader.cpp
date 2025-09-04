@@ -5,10 +5,6 @@
 
 namespace Infrastructure::Configuration {
 
-    JsonReader::JsonReader(const std::string& filePath)
-        : JsonReader(filePath) {
-    }
-
     std::string JsonReader::read() const {
         std::ifstream file(filePath);
         if (!file.is_open()) {
