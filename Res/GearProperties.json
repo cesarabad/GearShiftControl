@@ -4,7 +4,7 @@
     "RotationX": 0.0,
     "RotationY": 0.0,
     "MinSpeed": 0.0,
-    "MaxGearSpeed": 300.0,
+    "MaxSpeed": 300.0,
     "MaxSpeedToReduce": 300.0
   },
   {
@@ -12,7 +12,7 @@
     "RotationX": 0.0,
     "RotationY": 0.0,
     "MinSpeed": 0.0,
-    "MaxGearSpeed": 0.0,
+    "MaxSpeed": 0.0,
     "MaxSpeedToReduce": 0.0
   },
   {
@@ -20,7 +20,7 @@
     "RotationX": 0.0,
     "RotationY": 0.0,
     "MinSpeed": 0.0,
-    "MaxGearSpeed": 30.0,
+    "MaxSpeed": 30.0,
     "MaxSpeedToReduce": 25.0
   },
   {
@@ -28,7 +28,7 @@
     "RotationX": 0.0,
     "RotationY": 0.0,
     "MinSpeed": 15.0,
-    "MaxGearSpeed": 75.0,
+    "MaxSpeed": 75.0,
     "MaxSpeedToReduce": 60.0
   },
   {
@@ -36,7 +36,7 @@
     "RotationX": 0.0,
     "RotationY": 0.0,
     "MinSpeed": 30.0,
-    "MaxGearSpeed": 140.0,
+    "MaxSpeed": 140.0,
     "MaxSpeedToReduce": 100.0
   },
   {
@@ -44,7 +44,7 @@
     "RotationX": 0.0,
     "RotationY": 0.0,
     "MinSpeed": 60.0,
-    "MaxGearSpeed": 160.0,
+    "MaxSpeed": 160.0,
     "MaxSpeedToReduce": 120.0
   },
   {
@@ -52,7 +52,7 @@
     "RotationX": 0.0,
     "RotationY": 0.0,
     "MinSpeed": 70.0,
-    "MaxGearSpeed": 280.0,
+    "MaxSpeed": 280.0,
     "MaxSpeedToReduce": 160.0
   }
 ]
