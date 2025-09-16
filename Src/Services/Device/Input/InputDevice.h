@@ -6,6 +6,7 @@
 #include <concepts>
 #include <atomic>
 #include <mutex>
+#include <string>
 
 namespace Services::Device {
 
@@ -25,7 +26,7 @@ namespace Services::Device {
             deactivate();
         }
 
-        virtual void read() const = 0;
+        virtual std::string read() const = 0;
 
         void set_active(bool active) {
             std::lock_guard<std::mutex> lock(mutex_);

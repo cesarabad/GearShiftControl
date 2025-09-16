@@ -15,8 +15,6 @@ namespace Services::Device {
             }
             return input;
         }
-
-    private:
         explicit KeyboardDevice(int fd)
             : InputDevice(fd) {
         }
