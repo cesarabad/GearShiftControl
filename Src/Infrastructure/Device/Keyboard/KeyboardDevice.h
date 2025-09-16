@@ -1,12 +1,11 @@
 #pragma once
 #include "../../../Services/Device/Input/InputDevice.h"
-#include "../../Listenner/Keyboard/KeyboardListener.h"
 #include <memory>
 #include <iostream>
 
 namespace Infrastructure::Device {
 
-    class KeyboardDevice : public InputDevice<Infrastructure::Listener::KeyboardListener> {
+    class KeyboardDevice : public Services::Device::InputDevice {
     public:
         std::string read() const override {
             std::string input;
@@ -15,8 +14,8 @@ namespace Infrastructure::Device {
             }
             return input;
         }
-        explicit KeyboardDevice(int fd)
-            : InputDevice(fd, "ReadKeyboard") {
+        explicit KeyboardDevice(int fd, Services::Listener::DeviceListener listener)
+            : InputDevice(fd, "ReadKeyboard", listener) {
         }
     };
 

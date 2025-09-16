@@ -63,12 +63,16 @@ namespace Infrastructure::Device {
             if (function == "ReadKeyboard") {
                 int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
                 if (fd < 0) throw std::runtime_error("Cannot open keyboard device");
-                keyboard_ = std::make_unique<KeyboardDevice>(fd);
+
+                auto listener = std::make_unique<Infrastructure::Listener::KeyboardListener>();
+
+                keyboard_ = std::make_unique<KeyboardDevice>(fd, std::move(listener));
             }
             else {
                 throw std::invalid_argument("Unknown input device function: " + function);
             }
         }
+
 
         void initialize_output_device(const std::string& function, const std::string& symlink) {
             if (function == "GearBoxControl") {

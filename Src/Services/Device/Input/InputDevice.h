@@ -10,17 +10,16 @@
 
 namespace Services::Device {
 
-    template <typename T>
-    concept IsListener = std::derived_from<T, Services::Listener::DeviceListener>;
-
-    template <IsListener T>
     class InputDevice : public virtual Device {
     public:
-        explicit InputDevice(int device_serial_fd, const std::string& function)
+        explicit InputDevice(int device_serial_fd,
+            const std::string& function,
+            std::unique_ptr<Services::Listener::DeviceListener> listener)
             : Device(device_serial_fd, function),
-            listener_(std::make_unique<T>()),
+            listener_(std::move(listener)),
             active_(false) {
         }
+
 
         ~InputDevice() override {
             set_active(false);
@@ -28,7 +27,7 @@ namespace Services::Device {
 
         virtual std::string read() const = 0;
 
-        void set_active(bool active) {
+        void set_active(bool active) { 
             std::lock_guard<std::mutex> lock(mutex_);
             active_ = active;
             if (active_) {
@@ -44,7 +43,7 @@ namespace Services::Device {
         }
 
     protected:
-        std::unique_ptr<T> listener_;
+        std::unique_ptr<Services::Listener::DeviceListener> listener_;
         std::atomic<bool> active_;
         std::mutex mutex_;
 
