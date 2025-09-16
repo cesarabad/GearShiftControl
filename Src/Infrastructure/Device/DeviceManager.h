@@ -75,7 +75,7 @@ namespace Infrastructure::Device {
 
 
         void initialize_output_device(const std::string& function, const std::string& symlink) {
-            if (function == "GearBoxControl") {
+            if (function == "GearboxControl") {
                 int fd = open(symlink.c_str(), O_WRONLY);
                 if (fd < 0) throw std::runtime_error("Cannot open gearbox device");
                 gearbox_ = std::make_unique<GearBoxControlDevice>(fd, function);
