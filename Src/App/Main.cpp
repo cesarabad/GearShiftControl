@@ -27,7 +27,7 @@ int main() {
 		jsonReader.set_path("./Res/Devices.json");
 		jsonContent = jsonReader.read();
 
-        auto& deviceManager = DeviceManager::get_instance(jsonContent);
+        auto& deviceManager = Infrastructure::Device::DeviceManager::get_instance(jsonContent);
 
         deviceManager.get_keyboard().set_active(true);
 
