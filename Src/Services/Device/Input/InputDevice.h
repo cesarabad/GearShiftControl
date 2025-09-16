@@ -16,14 +16,14 @@ namespace Services::Device {
     template <IsListener T>
     class InputDevice : public virtual Device {
     public:
-        explicit InputDevice(int device_serial_fd)
-            : Device(device_serial_fd),
+        explicit InputDevice(int device_serial_fd, const std::string& function)
+            : Device(device_serial_fd, function),
             listener_(std::make_unique<T>()),
             active_(false) {
         }
 
         ~InputDevice() override {
-            deactivate();
+            set_active(false);
         }
 
         virtual std::string read() const = 0;
