@@ -20,7 +20,5 @@ public:
 
     ~GearBoxControlDevice() override;
 
-    static GearBoxControlDevice& get_instance(int device_serial_fd, const std::string& device_function);
-
-    void write(const char* data, size_t size, Core::Model::GearModel::Gear gear) const override;
+    void write(const char* data, size_t size, Core::Model::GearModel::Gear gear) const;
 };
