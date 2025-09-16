@@ -3,12 +3,13 @@
 #include <unistd.h> // ::write
 
 GearBoxControlDevice::GearBoxControlDevice(int device_serial_fd, const std::string& device_function)
-    : Device(device_serial_fd, device_function)
+    : OutputDevice<Core::Model::GearModel::Gear>(device_serial_fd, device_function)
 {
     if (device_function != "GearBoxControl") {
         throw std::invalid_argument("Invalid device function for GearBoxControlDevice");
     }
 }
+
 
 GearBoxControlDevice::~GearBoxControlDevice() = default;
 
