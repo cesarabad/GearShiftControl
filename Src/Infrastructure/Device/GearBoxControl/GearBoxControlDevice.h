@@ -9,7 +9,6 @@ private:
     static std::unique_ptr<GearBoxControlDevice> instance_;
     std::string device_function_;
 
-    explicit GearBoxControlDevice(int device_serial_fd, const std::string& device_function);
 
 public:
     GearBoxControlDevice(const GearBoxControlDevice&) = delete;
@@ -18,6 +17,8 @@ public:
     GearBoxControlDevice& operator=(GearBoxControlDevice&&) = delete;
 
     ~GearBoxControlDevice() override;
+
+    explicit GearBoxControlDevice(int device_serial_fd, const std::string& device_function);
 
     void write(const Core::Model::GearModel::Gear& gear) const override;
 };
