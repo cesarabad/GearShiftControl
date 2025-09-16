@@ -25,6 +25,8 @@ GearBoxControlDevice& GearBoxControlDevice::get_instance(int device_serial_fd, c
 }
 
 void GearBoxControlDevice::write(const char* data, size_t size, Core::Model::GearModel::Gear gear) const {
-	std::string message = "X" + gear.rotation.x + ",Y" + gear.rotation.y + "\n";
+
+    std::string message = "X" + std::to_string(gear.rotation.x) +
+        ",Y" + std::to_string(gear.rotation.y) + "\n";
     write(device_serial_fd_, message.c_str, message.size);
 }
