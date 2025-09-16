@@ -5,12 +5,16 @@
 #include <string>
 
 class GearBoxControlDevice : public Services::Device::OutputDevice<Core::Model::GearModel::Gear> {
-private:
-    static std::unique_ptr<GearBoxControlDevice> instance_;
-    std::string device_function_;
-
-
 public:
+    GearBoxControlDevice::GearBoxControlDevice(int device_serial_fd, const std::string& device_function)
+        : OutputDevice<Core::Model::GearModel::Gear>(device_serial_fd, device_function)
+    {
+        if (device_function != "GearBoxControl") {
+            throw std::invalid_argument("Invalid device function for GearBoxControlDevice");
+        }
+    }
+
+
     GearBoxControlDevice(const GearBoxControlDevice&) = delete;
     GearBoxControlDevice& operator=(const GearBoxControlDevice&) = delete;
     GearBoxControlDevice(GearBoxControlDevice&&) = delete;

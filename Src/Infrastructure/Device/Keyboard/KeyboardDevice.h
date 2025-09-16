@@ -17,7 +17,7 @@ namespace Services::Device {
             return input;
         }
         explicit KeyboardDevice(int fd)
-            : InputDevice(fd, DeviceConst::Function::ReadKeyboard) {
+            : InputDevice(fd, Services::Device::DeviceConst::Function::ReadKeyboard) {
         }
     };
 

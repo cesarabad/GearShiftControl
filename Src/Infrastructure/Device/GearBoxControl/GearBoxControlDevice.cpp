@@ -1,10 +1,9 @@
 #include "GearBoxControlDevice.h"
 #include <stdexcept>
 
-std::unique_ptr<GearBoxControlDevice> GearBoxControlDevice::instance_ = nullptr;
-
 GearBoxControlDevice::GearBoxControlDevice(int device_serial_fd, const std::string& device_function)
-    : Device(device_serial_fd, device_function), OutputDevice() {
+    : OutputDevice<Core::Model::GearModel::Gear>(device_serial_fd, device_function)
+{
     if (device_function == "GearBoxControl") {
         device_function_ = device_function;
     }
