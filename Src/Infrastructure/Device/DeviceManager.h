@@ -16,11 +16,6 @@ namespace Infrastructure::Device {
             inline const std::string Input = "Input";
             inline const std::string Output = "Output";
         }
-
-        namespace Function {
-            inline const std::string ReadKeyboard = "ReadKeyboard";
-            inline const std::string GearBoxControl = "GearBoxControl";
-        }
     }
 
     class DeviceManager {
@@ -65,7 +60,7 @@ namespace Infrastructure::Device {
         }
 
         void initialize_input_device(const std::string& function, const std::string& symlink) {
-            if (function == DeviceConst::Function::ReadKeyboard) {
+            if (function == "ReadKeyboard") {
                 int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
                 if (fd < 0) throw std::runtime_error("Cannot open keyboard device");
                 keyboard_ = std::make_unique<KeyboardDevice>(fd);
@@ -76,7 +71,7 @@ namespace Infrastructure::Device {
         }
 
         void initialize_output_device(const std::string& function, const std::string& symlink) {
-            if (function == DeviceConst::Function::GearBoxControl) {
+            if (function == "GearBoxControl") {
                 int fd = open(symlink.c_str(), O_WRONLY);
                 if (fd < 0) throw std::runtime_error("Cannot open gearbox device");
                 gearbox_ = std::make_unique<GearBoxControlDevice>(fd, function);

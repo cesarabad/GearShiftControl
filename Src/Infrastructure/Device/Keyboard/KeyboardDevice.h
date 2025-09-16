@@ -17,7 +17,7 @@ namespace Infrastructure::Device {
             return input;
         }
         explicit KeyboardDevice(int fd)
-            : InputDevice(fd, Services::Device::DeviceConst::Function::ReadKeyboard) {
+            : InputDevice(fd, Infrastructure::Device::DeviceConst::Function::ReadKeyboard) {
         }
     };
 

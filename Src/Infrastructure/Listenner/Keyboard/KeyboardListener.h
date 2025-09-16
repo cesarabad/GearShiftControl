@@ -1,13 +1,12 @@
 #pragma once
 #include "../../../Services/Listener/DeviceListener.h"
-#include "../../../Infrastructure/Device/DeviceManager.h"
 #include "../../../Core/Command/Keyboard/CommandA.h"
 #include "../../../Core/Command/Keyboard/CommandB.h"
 
 #include <thread>
 #include <iostream>
 
-namespace Services::Listener {
+namespace Infrastructure::Listener {
 
     class KeyboardListener : public DeviceListener {
     public:
