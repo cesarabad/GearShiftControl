@@ -9,8 +9,10 @@ namespace Infrastructure::Device {
 
     class KeyboardDevice : public Services::Device::InputDevice {
     public:
+        
         explicit KeyboardDevice(int fd)
-            : InputDevice(fd, "ReadKeyboard",
+            : InputDevice(fd,
+                "ReadKeyboard",
                 std::make_unique<Infrastructure::Listener::KeyboardListener>()) {
         }
 

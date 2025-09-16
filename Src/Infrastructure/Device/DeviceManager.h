@@ -64,6 +64,7 @@ namespace Infrastructure::Device {
                 int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
                 if (fd < 0) throw std::runtime_error("Cannot open keyboard device");
 
+                // Se crea directamente el KeyboardDevice; su constructor ya crea el listener
                 keyboard_ = std::make_unique<KeyboardDevice>(fd);
             }
             else {
