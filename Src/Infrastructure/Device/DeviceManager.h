@@ -6,8 +6,8 @@
 #include <unistd.h>
 #include <nlohmann/json.hpp>
 
-#include "Device/Input/KeyboardDevice.h"
-#include "Device/Output/GearBoxControlDevice.h"
+#include "Keyboard/KeyboardDevice.h"
+#include "GearBoxControl\GearBoxControlDevice.h"
 
 namespace Services::Device {
 
