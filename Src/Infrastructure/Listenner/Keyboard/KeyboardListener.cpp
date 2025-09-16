@@ -7,7 +7,7 @@
 
 namespace Infrastructure::Listener {
 
-    void KeyboardListener::listen(const std::string& event) const {
+    void KeyboardListener::listen() const {
         if (listening_) return;
         stopFlag_.store(false);
         listening_ = true;

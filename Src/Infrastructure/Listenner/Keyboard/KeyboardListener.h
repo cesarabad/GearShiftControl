@@ -6,7 +6,7 @@ namespace Infrastructure::Listener {
 
     class KeyboardListener : public Services::Listener::DeviceListener {
     public:
-        void listen(const std::string& event = "") const override;
+        void listen() const override;
     };
 
 }

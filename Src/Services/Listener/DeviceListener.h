@@ -11,7 +11,7 @@ namespace Services::Listener {
             stop_listening();
         }
 
-        virtual void listen(const std::string& event = "") const = 0;
+        virtual void listen() const = 0;
 
         virtual void stop_listening() {
             stopFlag_.store(true);
