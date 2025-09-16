@@ -1,7 +1,6 @@
 #pragma once
 #include "../../../Services/Device/Input/InputDevice.h"
 #include "../../Listenner/Keyboard/KeyboardListener.h"
-#include "../DeviceManager.h"
 #include <memory>
 #include <iostream>
 
@@ -17,7 +16,7 @@ namespace Infrastructure::Device {
             return input;
         }
         explicit KeyboardDevice(int fd)
-            : InputDevice(fd, Infrastructure::Device::DeviceConst::Function::ReadKeyboard) {
+            : InputDevice(fd, "ReadKeyboard") {
         }
     };
 
