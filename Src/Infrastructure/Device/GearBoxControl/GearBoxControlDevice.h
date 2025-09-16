@@ -6,14 +6,8 @@
 
 class GearBoxControlDevice : public Services::Device::OutputDevice<Core::Model::GearModel::Gear> {
 public:
-    GearBoxControlDevice::GearBoxControlDevice(int device_serial_fd, const std::string& device_function)
-        : OutputDevice<Core::Model::GearModel::Gear>(device_serial_fd, device_function)
-    {
-        if (device_function != "GearBoxControl") {
-            throw std::invalid_argument("Invalid device function for GearBoxControlDevice");
-        }
-    }
-
+    // borramos constructor definido dentro de la clase
+    explicit GearBoxControlDevice(int device_serial_fd, const std::string& device_function);
 
     GearBoxControlDevice(const GearBoxControlDevice&) = delete;
     GearBoxControlDevice& operator=(const GearBoxControlDevice&) = delete;
@@ -21,8 +15,6 @@ public:
     GearBoxControlDevice& operator=(GearBoxControlDevice&&) = delete;
 
     ~GearBoxControlDevice() override;
-
-    explicit GearBoxControlDevice(int device_serial_fd, const std::string& device_function);
 
     void write(const Core::Model::GearModel::Gear& gear) const override;
 };
