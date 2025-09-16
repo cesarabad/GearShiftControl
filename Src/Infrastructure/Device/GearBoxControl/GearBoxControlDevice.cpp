@@ -28,5 +28,5 @@ void GearBoxControlDevice::write(const char* data, size_t size, Core::Model::Gea
 
     std::string message = "X" + std::to_string(gear.rotation.x) +
         ",Y" + std::to_string(gear.rotation.y) + "\n";
-    write(device_serial_fd_, message.c_str, message.size);
+    ::write(device_serial_fd_, message.c_str(), message.size());
 }
