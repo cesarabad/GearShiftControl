@@ -22,20 +22,3 @@ void GearBoxControlDevice::write(const Core::Model::GearModel::Gear& gear) const
     }
     return *instance_;
 }
-
-void GearBoxControlDevice::write(const char* data, size_t size, Core::Model::GearModel::Gear gear) const {
-
-        instance_ = std::unique_ptr<GearBoxControlDevice>(
-            new GearBoxControlDevice(device_serial_fd, device_function)
-        );
-    }
-    return *instance_;
-}
-
-void GearBoxControlDevice::write(const char* data, size_t size, Core::Model::GearModel::Gear gear) const {
-
-    std::string message = "X" + std::to_string(gear.rotation.x) +
-        ",Y" + std::to_string(gear.rotation.y) + "\n";
-
-    ::write(device_serial_fd_, message.c_str(), message.size());
-}
