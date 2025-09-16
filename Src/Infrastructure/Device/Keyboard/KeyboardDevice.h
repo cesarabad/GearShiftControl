@@ -5,7 +5,7 @@
 #include <memory>
 #include <iostream>
 
-namespace Services::Device {
+namespace Infrastructure::Device {
 
     class KeyboardDevice : public InputDevice<Services::Listener::KeyboardListener> {
     public:

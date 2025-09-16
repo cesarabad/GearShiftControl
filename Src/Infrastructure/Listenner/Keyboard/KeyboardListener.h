@@ -1,6 +1,6 @@
 #pragma once
 #include "../../../Services/Listener/DeviceListener.h"
-#include "../../../Infrastructure/Device/Keyboard/KeyboardDevice.h"
+#include "../../../Infrastructure/Device/DeviceManager.h"
 #include "../../../Core/Command/Keyboard/CommandA.h"
 #include "../../../Core/Command/Keyboard/CommandB.h"
 
@@ -17,7 +17,7 @@ namespace Services::Listener {
             listening_ = true;
 
             listenerThread_ = std::thread([this]() {
-                auto& device = Services::Device::KeyboardDevice::get_instance();
+                auto& device = Infrastructure::Device::DeviceManager::get_instance().get_keyboard();
                 while (!stopFlag_.load()) {
                     std::string input = device.read();
                     if (input.empty()) break; // EOF o error
