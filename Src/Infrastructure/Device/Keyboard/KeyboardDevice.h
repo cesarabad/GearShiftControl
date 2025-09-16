@@ -6,7 +6,7 @@
 
 namespace Infrastructure::Device {
 
-    class KeyboardDevice : public InputDevice<Services::Listener::KeyboardListener> {
+    class KeyboardDevice : public InputDevice<Infrastructure::Listener::KeyboardListener> {
     public:
         std::string read() const override {
             std::string input;
