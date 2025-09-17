@@ -9,7 +9,7 @@ namespace Services::Device {
         int device_serial_fd_{ -1 };
 
     public:
-        explicit Device(int device_serial_fd, std::string device_function)
+        explicit Device(int device_serial_fd)
             : device_serial_fd_(device_serial_fd) {
         }
 
