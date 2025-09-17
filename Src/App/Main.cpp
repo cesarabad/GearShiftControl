@@ -30,6 +30,7 @@ int main() {
         auto& deviceManager = Infrastructure::Device::DeviceManager::get_instance(jsonContent);
 
         deviceManager.get_keyboard().set_active(true);
+        deviceManager.get_gearbox_shifter().set_active(true);
 
 
         while (true) {
