@@ -31,6 +31,8 @@
     <ClInclude Include="Src\Infraestructure\Configuration\DataReader.h" />
     <ClInclude Include="Src\Infraestructure\Configuration\Json\JsonReader.h" />
     <ClInclude Include="Src\Infraestructure\Database\DatabaseConnection.h" />
+    <ClInclude Include="Src\Infrastructure\Device\GearBoxShifter\GearBoxShifterDevice.h" />
+    <ClInclude Include="Src\Infrastructure\Listenner\GearBoxShifter\GearBoxShifterListener.h" />
     <ClInclude Include="Src\Services\Data\ConcurrentData.h" />
     <ClInclude Include="Src\Services\Device\Device.h" />
     <ClInclude Include="Src\Services\Device\InputOutput\InputOutputDevice.h" />
@@ -46,6 +48,7 @@
     <ClCompile Include="Src\Core\Model\Gear.h" />
     <ClCompile Include="Src\Infrastructure\Configuration\Json\JsonReader.cpp" />
     <ClCompile Include="Src\Infrastructure\Device\Keyboard\KeyboardDevice.h" />
+    <ClCompile Include="Src\Infrastructure\Listenner\GearBoxShifter\GearBoxShifterListener.cpp" />
     <ClCompile Include="Src\Infrastructure\Listenner\Keyboard\KeyboardListener.cpp" />
     <ClCompile Include="Src\Infrastructure\Listenner\Keyboard\KeyboardListener.h" />
     <ClCompile Include="Src\Services\Mapping\GearProperties\GearPropertiesMapper.cpp" />

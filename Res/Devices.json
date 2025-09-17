@@ -10,5 +10,11 @@
     "Function": "ReadKeyboard",
     "Description": "Read keyboard inputs",
     "Type": "Input"
+  },
+  {
+    "Symlink": "/dev/GearBoxShifter",
+    "Function": "ReadGearBoxShifter",
+    "Description": "Read GearBox shifter inputs",
+    "Type": "Input"
   }
 ]

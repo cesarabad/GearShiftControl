@@ -8,6 +8,7 @@
 
 #include "./Keyboard/KeyboardDevice.h"
 #include "./GearBoxControl/GearBoxControlDevice.h"
+#include "./GearBoxShifter/GearBoxShifterDevice.h"
 
 namespace Infrastructure::Device {
 
@@ -33,6 +34,11 @@ namespace Infrastructure::Device {
         GearBoxControlDevice& get_gearbox() {
             if (!gearbox_) throw std::runtime_error("GearBoxControlDevice not initialized");
             return *gearbox_;
+        }
+
+        GearBoxShifterDevice& get_gearbox_shifter() {
+			if (!gearbox_shifter_) throw std::runtime_error("GearBoxShifterDevice not initialized");
+			return *gearbox_shifter_;
         }
 
     private:
@@ -64,8 +70,12 @@ namespace Infrastructure::Device {
                 int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
                 if (fd < 0) throw std::runtime_error("Cannot open keyboard device");
 
-                // Se crea directamente el KeyboardDevice; su constructor ya crea el listener
                 keyboard_ = std::make_unique<KeyboardDevice>(fd);
+            }
+            else if (function == "ReadGearBoxShifter") {
+				int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
+				if (fd < 0) throw std::runtime_error("Cannot open gearbox shifter device");
+				gearbox_shifter_ = std::make_unique<GearBoxShifterDevice>(fd);
             }
             else {
                 throw std::invalid_argument("Unknown input device function: " + function);
@@ -87,6 +97,7 @@ namespace Infrastructure::Device {
 
         std::unique_ptr<KeyboardDevice> keyboard_;
         std::unique_ptr<GearBoxControlDevice> gearbox_;
+		std::unique_ptr<GearBoxShifterDevice> gearbox_shifter_;
     };
 
 }
