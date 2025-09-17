@@ -2,6 +2,13 @@
   {
     "Symlink": "/dev/GearBoxArduino",
     "Function": "GearboxControl",
-    "Description": "Arduino that is responsible for moving the servomotors that change gears in the gearbox"
+    "Description": "Arduino that is responsible for moving the servomotors that change gears in the gearbox",
+    "Type": "Output"
+  },
+  {
+    "Symlink": "/dev/input/event0",
+    "Function": "ReadKeyboard",
+    "Description": "Read keyboard inputs",
+    "Type": "Input"
   }
 ]
