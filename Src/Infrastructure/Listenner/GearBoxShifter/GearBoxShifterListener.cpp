@@ -18,23 +18,11 @@ namespace Infrastructure::Listener {
                 if (event.empty()) continue;
 
                 // Aquí interpretas el evento
-                if (event == "GEAR_1") {
-                    std::cout << "Marcha 1 metida" << std::endl;
+                if (event == "KEY_CODE:291 VALUE:1") {
+                    std::cout << "Bajar de marcha" << std::endl;
                 }
-                else if (event == "GEAR_2") {
-                    std::cout << "Marcha 2 metida" << std::endl;
-                }
-                else if (event == "GEAR_3") {
-                    std::cout << "Marcha 3 metida" << std::endl;
-                }
-                else if (event == "GEAR_4") {
-                    std::cout << "Marcha 4 metida" << std::endl;
-                }
-                else if (event == "GEAR_5") {
-                    std::cout << "Marcha 5 metida" << std::endl;
-                }
-                else if (event == "GEAR_R") {
-                    std::cout << "Marcha atrás metida" << std::endl;
+                else if (event == "KEY_CODE:290 VALUE:1") {
+                    std::cout << "Subir de marcha" << std::endl;
                 }
                 else {
                     std::cout << "Evento desconocido: " << event << std::endl;
