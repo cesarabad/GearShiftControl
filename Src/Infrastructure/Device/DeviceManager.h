@@ -9,6 +9,7 @@
 #include "./Keyboard/KeyboardDevice.h"
 #include "./GearBoxControl/GearBoxControlDevice.h"
 #include "./GearBoxShifter/GearBoxShifterDevice.h"
+#include "./DeviceConstants.h"
 
 namespace Infrastructure::Device {
 
@@ -48,56 +49,84 @@ namespace Infrastructure::Device {
         }
 
         void initialize_devices(const nlohmann::json& j) {
+
+			using namespace Device::DeviceConst::Type;
+
             for (auto& dev : j) {
                 std::string symlink = dev["Symlink"];
                 std::string function = dev["Function"];
                 std::string type = dev["Type"];
 
-                if (type == DeviceConst::Type::Input) {
-                    initialize_input_device(function, symlink);
-                }
-                else if (type == DeviceConst::Type::Output) {
-                    initialize_output_device(function, symlink);
-                }
-                else {
-                    throw std::invalid_argument("Unknown device type: " + type);
+                switch (type) {
+                    case INPUT:
+                        initialize_input_device(function, symlink);
+                        break;
+
+					case OUTPUT:
+                        initialize_output_device(function, symlink);
+                        break;
+
+					default:
+						throw std::invalid_argument("Unknown device type: " + type);
                 }
             }
         }
 
         void initialize_input_device(const std::string& function, const std::string& symlink) {
-            if (function == "ReadKeyboard") {
-                int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
-                if (fd < 0) throw std::runtime_error("Cannot open keyboard device");
+            
+            using namespace Device::DeviceConst::Function;
 
-                keyboard_ = std::make_unique<KeyboardDevice>(fd);
-            }
-            else if (function == "ReadGearBoxShifter") {
-				int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
-				if (fd < 0) throw std::runtime_error("Cannot open gearbox shifter device");
-				gearbox_shifter_ = std::make_unique<GearBoxShifterDevice>(fd);
-            }
-            else {
-                throw std::invalid_argument("Unknown input device function: " + function);
+            switch (function) {
+                case READ_KEYBOARD:
+                    initialize_keyboard(symlink);
+					break;
+
+				case READ_GEARBOX_SHIFTER:
+					initialize_gearbox_shifter(symlink);
+                    break;
+
+				default:
+					throw std::invalid_argument("Unknown input device function: " + function);
             }
         }
 
 
 
         void initialize_output_device(const std::string& function, const std::string& symlink) {
-            if (function == "GearboxControl") {
-                int fd = open(symlink.c_str(), O_WRONLY);
-                if (fd < 0) throw std::runtime_error("Cannot open gearbox device");
-                gearbox_ = std::make_unique<GearBoxControlDevice>(fd, function);
-            }
-            else {
-                throw std::invalid_argument("Unknown output device function: " + function);
-            }
+
+			using namespace Device::DeviceConst::Function;
+
+			switch (function) {
+			    case GEARBOX_CONTROL:
+				    initialize_gearbox_control(function, symlink);
+				    break;
+
+			    default:
+				    throw std::invalid_argument("Unknown output device function: " + function);
+			}
         }
 
         std::unique_ptr<KeyboardDevice> keyboard_;
         std::unique_ptr<GearBoxControlDevice> gearbox_;
 		std::unique_ptr<GearBoxShifterDevice> gearbox_shifter_;
+
+        void initialize_keyboard(const std::string& symlink) {
+            int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
+            if (fd < 0) throw std::runtime_error("Cannot open keyboard device");
+            keyboard_ = std::make_unique<KeyboardDevice>(fd);
+        }
+
+		void initialize_gearbox_shifter(const std::string& symlink) {
+            int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
+            if (fd < 0) throw std::runtime_error("Cannot open gearbox shifter device");
+            gearbox_shifter_ = std::make_unique<GearBoxShifterDevice>(fd);
+		}
+
+        void initialize_gearbox_control(const std::string& function, const std::string& symlink) {
+            int fd = open(symlink.c_str(), O_WRONLY);
+            if (fd < 0) throw std::runtime_error("Cannot open gearbox device");
+            gearbox_ = std::make_unique<GearBoxControlDevice>(fd, function);
+		}
     };
 
 }

@@ -6,8 +6,8 @@ namespace Services::Device {
     template <typename T>
     class OutputDevice : public virtual Device {
     public:
-        OutputDevice(int device_serial_fd, const std::string& device_function)
-            : Device(device_serial_fd, device_function) {
+        OutputDevice(int device_serial_fd)
+            : Device(device_serial_fd) {
         }
 
         ~OutputDevice() override = default;

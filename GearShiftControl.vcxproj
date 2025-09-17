@@ -24,6 +24,7 @@
   <ItemGroup>
     <ClInclude Include="Src\Core\Command\Keyboard\CommandA.h" />
     <ClInclude Include="Src\Core\Command\Keyboard\CommandB.h" />
+    <ClInclude Include="Src\Infrastructure\Device\DeviceConstants.h" />
     <ClInclude Include="Src\Infrastructure\Device\DeviceManager.h" />
     <ClInclude Include="Src\Infrastructure\Device\GearBoxControl\GearBoxControlDevice.h" />
     <ClInclude Include="Src\Core\Command\Command.h" />

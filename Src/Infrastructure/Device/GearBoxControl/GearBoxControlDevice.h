@@ -10,8 +10,8 @@ namespace Infrastructure::Device {
 
     class GearBoxControlDevice : public Services::Device::OutputDevice<Core::Model::GearModel::Gear> {
     public:
-        explicit GearBoxControlDevice(int device_serial_fd, const std::string& device_function)
-            : Services::Device::Device(device_serial_fd, device_function), Services::Device::OutputDevice<Core::Model::GearModel::Gear>(device_serial_fd, device_function)
+        explicit GearBoxControlDevice(int device_serial_fd)
+            : Services::Device::Device(device_serial_fd), Services::Device::OutputDevice<Core::Model::GearModel::Gear>(device_serial_fd)
         {
             if (device_function != "GearboxControl") {
                 throw std::invalid_argument("Invalid device function for GearBoxControlDevice");

@@ -13,9 +13,8 @@ namespace Services::Device {
     class InputDevice : public virtual Device {
     public:
         InputDevice(int device_serial_fd,
-            const std::string& device_function,
             std::unique_ptr<Services::Listener::DeviceListener> listener)
-            : Device(device_serial_fd, device_function),
+            : Device(device_serial_fd),
             listener_(std::move(listener)),
             active_(false) {
         }
