@@ -57,18 +57,15 @@ namespace Infrastructure::Device {
                 std::string function = dev["Function"];
                 std::string type = dev["Type"];
 
-                switch (type) {
-                    case INPUT:
-                        initialize_input_device(function, symlink);
-                        break;
-
-					case OUTPUT:
-                        initialize_output_device(function, symlink);
-                        break;
-
-					default:
-						throw std::invalid_argument("Unknown device type: " + type);
-                }
+                if (type == INPUT) {
+                    initialize_input_device(function, symlink);
+				}
+				else if (type == OUTPUT) {
+					initialize_output_device(function, symlink);
+				}
+				else {
+					throw std::invalid_argument("Unknown device type: " + type);
+				}
             }
         }
 
@@ -76,18 +73,15 @@ namespace Infrastructure::Device {
             
             using namespace Device::DeviceConst::Function;
 
-            switch (function) {
-                case READ_KEYBOARD:
-                    initialize_keyboard(symlink);
-					break;
-
-				case READ_GEARBOX_SHIFTER:
-					initialize_gearbox_shifter(symlink);
-                    break;
-
-				default:
-					throw std::invalid_argument("Unknown input device function: " + function);
+            if (function == READ_KEYBOARD) {
+                initialize_keyboard(symlink);
             }
+			else if (function == READ_GEARBOX_SHIFTER) {
+				initialize_gearbox_shifter(symlink);
+			}
+			else {
+				throw std::invalid_argument("Unknown input device function: " + function);
+			}
         }
 
 
@@ -96,14 +90,12 @@ namespace Infrastructure::Device {
 
 			using namespace Device::DeviceConst::Function;
 
-			switch (function) {
-			    case GEARBOX_CONTROL:
-				    initialize_gearbox_control(function, symlink);
-				    break;
-
-			    default:
-				    throw std::invalid_argument("Unknown output device function: " + function);
-			}
+            if (function == GEARBOX_CONTROL) {
+                initialize_gearbox_control(function, symlink);
+            }
+            else {
+				throw std::invalid_argument("Unknown output device function: " + function);
+            }
         }
 
         std::unique_ptr<KeyboardDevice> keyboard_;
