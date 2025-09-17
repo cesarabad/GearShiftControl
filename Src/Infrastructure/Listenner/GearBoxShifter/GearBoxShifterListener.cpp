@@ -1,7 +1,5 @@
-#include "KeyboardListener.h"
+#include "GearBoxShifterListener.h"
 #include "../../Device/DeviceManager.h"
-#include "../../../Core/Command/Keyboard/CommandA.h"
-#include "../../../Core/Command/Keyboard/CommandB.h"
 #include <thread>
 #include <iostream>
 

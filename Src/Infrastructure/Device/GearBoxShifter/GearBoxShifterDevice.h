@@ -4,6 +4,9 @@
 #include "../../Listenner/GearBoxShifter/GearBoxShifterListener.h"
 #include <memory>
 #include <iostream>
+#include <linux/input.h>
+#include <unistd.h>
+#include <sstream>
 
 namespace Infrastructure::Device {
 
