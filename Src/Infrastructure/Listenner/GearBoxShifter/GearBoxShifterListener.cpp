@@ -19,13 +19,10 @@ namespace Infrastructure::Listener {
 
                 // Aquí interpretas el evento
                 if (event == "KEY_CODE:291 VALUE:1") {
-                    std::cout << "Bajar de marcha" << std::endl;
-                }
-                else if (event == "KEY_CODE:290 VALUE:1") {
                     std::cout << "Subir de marcha" << std::endl;
                 }
-                else {
-                    std::cout << "Evento desconocido: " << event << std::endl;
+                else if (event == "KEY_CODE:290 VALUE:1") {
+                    std::cout << "Bajar de marcha" << std::endl;
                 }
             }
             });
