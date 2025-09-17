@@ -24,7 +24,7 @@ namespace Infrastructure::Device {
             std::stringstream ss;
 
             // Lee un evento
-            ssize_t n = ::read(fd_, &ev, sizeof(ev));
+            ssize_t n = ::read(device_serial_fd_, &ev, sizeof(ev));
             if (n != sizeof(ev)) {
                 return {};
             }
