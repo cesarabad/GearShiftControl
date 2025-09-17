@@ -12,11 +12,7 @@ namespace Infrastructure::Device {
     public:
         explicit GearBoxControlDevice(int device_serial_fd)
             : Services::Device::Device(device_serial_fd), Services::Device::OutputDevice<Core::Model::GearModel::Gear>(device_serial_fd)
-        {
-            if (device_function != "GearboxControl") {
-                throw std::invalid_argument("Invalid device function for GearBoxControlDevice");
-            }
-        }
+        {}
 
         GearBoxControlDevice(const GearBoxControlDevice&) = delete;
         GearBoxControlDevice& operator=(const GearBoxControlDevice&) = delete;

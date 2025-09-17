@@ -5,8 +5,7 @@
 
 namespace Services::Device {
 
-    template <typename InputListenerType>
-    class InputOutputDevice : public InputDevice<InputListenerType>, public virtual OutputDevice {
+    class InputOutputDevice : public virtual InputDevice, public virtual OutputDevice {
     public:
         explicit InputOutputDevice(std::int32_t fd)
             : Device(fd), InputDevice<InputListenerType>(), OutputDevice() {}

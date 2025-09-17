@@ -14,8 +14,8 @@ namespace Infrastructure::Device {
     public:
 
         explicit GearBoxShifterDevice(int fd)
-            : Services::Device::Device(fd, "ReadGearBoxShifter"),
-            Services::Device::InputDevice(fd, "ReadGearBoxShifter",
+            : Services::Device::Device(fd),
+            Services::Device::InputDevice(fd,
                 std::make_unique<Infrastructure::Listener::GearBoxShifterListener>()) {
         }
 
