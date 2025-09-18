@@ -20,8 +20,14 @@ namespace Services::Data {
 
     // Clutch pressed
     void ConcurrentData::set_clutch_pressed(bool pressed) {
+        if (pressed != clutch_pressed_.load()) {
+			if (pressed) {
+				std::cout << "Embrague pisado" << std::endl;
+			}
+			else {
+				std::cout << "Embrague liberado" << std::endl;
+			}
         clutch_pressed_.store(pressed);
-        std::cout << "Embrague pisado" << std::endl;
     }
     bool ConcurrentData::is_clutch_pressed() const { return clutch_pressed_.load(); }
 
