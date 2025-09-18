@@ -15,21 +15,30 @@ namespace Services::Data {
     }
 
     // Current gear
-    void ConcurrentData::set_current_gear(int gear) { current_gear_.store(gear); }
-    int ConcurrentData::get_current_gear() const { return current_gear_.load(); }
+    void ConcurrentData::set_current_gear(int gear) {
+        current_gear_.store(gear);
+    }
+
+    int ConcurrentData::get_current_gear() const {
+        return current_gear_.load();
+    }
 
     // Clutch pressed
     void ConcurrentData::set_clutch_pressed(bool pressed) {
         if (pressed != clutch_pressed_.load()) {
-			if (pressed) {
-				std::cout << "Embrague pisado" << std::endl;
-			}
-			else {
-				std::cout << "Embrague liberado" << std::endl;
-			}
+            if (pressed) {
+                std::cout << "Embrague pisado" << std::endl;
+            }
+            else {
+                std::cout << "Embrague liberado" << std::endl;
+            }
+        }
         clutch_pressed_.store(pressed);
     }
-    bool ConcurrentData::is_clutch_pressed() const { return clutch_pressed_.load(); }
+
+    bool ConcurrentData::is_clutch_pressed() const {
+        return clutch_pressed_.load();
+    }
 
     // Gear map
     void ConcurrentData::set_gear_map(const std::unordered_map<int, Core::Model::GearModel::Gear>& map) {
