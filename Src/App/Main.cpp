@@ -6,6 +6,7 @@
 #include "../Services/Data/ConcurrentData.h"
 #include "../Infrastructure/Device/DeviceManager.h"
 #include "../Infrastructure/Listenner/Keyboard/KeyboardListener.h"
+#include "../Infrastructure/Sensor/ClutchHallSensor.h"
 
 int main() {
     using namespace Services::Data;
@@ -32,7 +33,7 @@ int main() {
         deviceManager.get_keyboard().set_active(true);
         deviceManager.get_gearbox_shifter().set_active(true);
 
-        auto& clutchSensor = ClutchHallSensor::getInstance(0);
+        auto& clutchSensor = Infrastructure::Sensor::ClutchHallSensor::getInstance(0);
         clutchSensor.start();
 
         while (true) {
