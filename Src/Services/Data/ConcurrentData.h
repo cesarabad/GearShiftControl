@@ -23,35 +23,19 @@ namespace Services::Data {
         ConcurrentData(const ConcurrentData&) = delete;
         ConcurrentData& operator=(const ConcurrentData&) = delete;
 
-        static ConcurrentData& get_instance() {
-            std::call_once(init_flag_, []() {
-                instance_.reset(new ConcurrentData());
-                });
-            return *instance_;
-        }
+        static ConcurrentData& get_instance();
 
         // Current gear
-        void set_current_gear(int gear) { current_gear_.store(gear); }
-        int get_current_gear() const { return current_gear_.load(); }
+        void set_current_gear(int gear);
+        int get_current_gear() const;
 
         // Clutch pressed
-        void set_clutch_pressed(bool pressed) { clutch_pressed_.store(pressed); std::cout << "Embrague pisado" << std::endl; }
-        bool is_clutch_pressed() const { return clutch_pressed_.load(); }
+        void set_clutch_pressed(bool pressed);
+        bool is_clutch_pressed() const;
 
         // Gear map
-        void set_gear_map(const std::unordered_map<int, Core::Model::GearModel::Gear>& map) {
-            std::lock_guard<std::mutex> lock(gear_map_mutex_);
-            gear_map_ = map;
-        }
-
-        std::unordered_map<int, Core::Model::GearModel::Gear> get_gear_map() const {
-            std::lock_guard<std::mutex> lock(gear_map_mutex_);
-            return gear_map_;
-        }
+        void set_gear_map(const std::unordered_map<int, Core::Model::GearModel::Gear>& map);
+        std::unordered_map<int, Core::Model::GearModel::Gear> get_gear_map() const;
     };
-
-    // Inicialización de variables estáticas
-    std::unique_ptr<ConcurrentData> ConcurrentData::instance_ = nullptr;
-    std::once_flag ConcurrentData::init_flag_;
 
 } // namespace Services::Data
