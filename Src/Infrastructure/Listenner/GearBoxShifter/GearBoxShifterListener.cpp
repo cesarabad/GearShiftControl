@@ -1,5 +1,6 @@
 #include "GearBoxShifterListener.h"
 #include "../../Device/DeviceManager.h"
+#include "../../../Services/Data/ConcurrentData.h"
 #include <thread>
 #include <iostream>
 
@@ -19,10 +20,22 @@ namespace Infrastructure::Listener {
 
                 // Aquí interpretas el evento
                 if (event == "KEY_CODE:291 VALUE:1") {
-                    std::cout << "Subir de marcha" << std::endl;
+
+                    if (Services::Data::ConcurrentData::get_instance().is_clutch_pressed()) {
+                        std::cout << "Subir de marcha" << std::endl;
+                    }
+                    else {
+                        std::cout << "No se puede subir de marcha, el embrague no está presionado" << std::endl;
+                    }
+                    
                 }
                 else if (event == "KEY_CODE:290 VALUE:1") {
-                    std::cout << "Bajar de marcha" << std::endl;
+					if (Services::Data::ConcurrentData::get_instance().is_clutch_pressed()) {
+						std::cout << "Bajar de marcha" << std::endl;
+					}
+					else {
+						std::cout << "No se puede bajar de marcha, el embrague no está presionado" << std::endl;
+					}
                 }
             }
             });

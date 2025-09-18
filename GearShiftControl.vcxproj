@@ -34,6 +34,7 @@
     <ClInclude Include="Src\Infraestructure\Database\DatabaseConnection.h" />
     <ClInclude Include="Src\Infrastructure\Device\GearBoxShifter\GearBoxShifterDevice.h" />
     <ClInclude Include="Src\Infrastructure\Listenner\GearBoxShifter\GearBoxShifterListener.h" />
+    <ClInclude Include="Src\Infrastructure\Sensor\ClutchHallSensor.h" />
     <ClInclude Include="Src\Services\Data\ConcurrentData.h" />
     <ClInclude Include="Src\Services\Device\Device.h" />
     <ClInclude Include="Src\Services\Device\InputOutput\InputOutputDevice.h" />

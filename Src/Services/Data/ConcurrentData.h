@@ -35,7 +35,7 @@ namespace Services::Data {
         int get_current_gear() const { return current_gear_.load(); }
 
         // Clutch pressed
-        void set_clutch_pressed(bool pressed) { clutch_pressed_.store(pressed); }
+        void set_clutch_pressed(bool pressed) { clutch_pressed_.store(pressed); std::cout << "Embrague pisado" << std::endl; }
         bool is_clutch_pressed() const { return clutch_pressed_.load(); }
 
         // Gear map
