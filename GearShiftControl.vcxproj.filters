@@ -110,5 +110,8 @@
     <ClCompile Include="Src\Infrastructure\Listenner\GearBoxShifter\GearBoxShifterListener.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Services\Data\ConcurrentData.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
