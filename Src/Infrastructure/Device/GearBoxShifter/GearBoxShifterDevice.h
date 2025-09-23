@@ -22,16 +22,14 @@ namespace Infrastructure::Device {
         std::string read() const override {
             struct input_event ev;
             std::stringstream ss;
-            ssize_t n = 0;
 
-            // Lee un evento completo
-            do {
-                n = ::read(device_serial_fd_, &ev, sizeof(ev));
-                if (n == -1) {
-                    perror("Error leyendo el dispositivo");
-                    return "";
-                }
-            } while (n != sizeof(ev));
+            // Bloquea hasta que haya un evento
+            ssize_t n = ::read(device_serial_fd_, &ev, sizeof(ev));
+            if (n != sizeof(ev)) {
+                // Esto solo ocurrirá si hay error
+                std::cerr << "Error leyendo el dispositivo" << std::endl;
+                return "";
+            }
 
             // Solo nos interesan eventos de tipo "key" o "absolute"
             if (ev.type == EV_KEY || ev.type == EV_ABS) {
