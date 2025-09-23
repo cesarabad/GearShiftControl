@@ -1,5 +1,6 @@
 #include "ConcurrentData.h"
 #include <iostream>
+#include <stacktrace>
 
 namespace Services::Data {
 
@@ -17,7 +18,7 @@ namespace Services::Data {
     // Current gear
     void ConcurrentData::set_current_gear(int gear) {
         current_gear_.store(gear);
-        std::cout << "Se ha puesto la marcha " << gear << std::endl;
+        std::cout << "Se ha puesto la marcha: " << (gear == -1 ? "R" : std::to_string(gear)) << std::endl;
     }
 
     int ConcurrentData::get_current_gear() const {
