@@ -48,7 +48,7 @@ namespace Services::Data {
         std::unordered_map<int, Core::Model::GearModel::Gear> get_gear_map() const;
 
 		// Configuration
-		const Core::Model::Configuration::Configuration& get_configuration() ;
+		Core::Model::Configuration::Configuration& get_configuration() ;
     };
 
 } // namespace Services::Data

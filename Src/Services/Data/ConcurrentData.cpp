@@ -58,7 +58,7 @@ namespace Services::Data {
     }
 
 	// Configuration
-    const Core::Model::Configuration::Configuration& ConcurrentData::get_configuration()  {
+    Core::Model::Configuration::Configuration& ConcurrentData::get_configuration()  {
 		std::lock_guard<std::mutex> lock(config_mutex_);
         return configuration_;
     }
