@@ -30,7 +30,12 @@ namespace Infrastructure::Device {
                 std::cerr << "Error leyendo el dispositivo" << std::endl;
                 return "";
             }
-            ss << ev.code << ":" << ev.value;
+
+            // Solo nos interesan eventos de tipo "key" o "absolute"
+            if (ev.type == EV_KEY || ev.type == EV_ABS) {
+                ss << ev.code << ":" << ev.value;
+            }
+
             return ss.str();
         }
     };

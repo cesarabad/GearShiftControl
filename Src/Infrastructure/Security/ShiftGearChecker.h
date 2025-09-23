@@ -35,8 +35,8 @@ namespace Infrastructure::Security {
 			}
 
 			if (concurrentData.get_configuration().Security_.CheckSpeedRange &&
-				(concurrentData.get_current_speed() >= concurrentData.get_gear_map()[gear_checking_].speedLimit.max ||
-				concurrentData.get_current_speed() <= concurrentData.get_gear_map()[gear_checking_].speedLimit.min)) {
+				(concurrentData.get_current_speed() > concurrentData.get_gear_map()[gear_checking_].speedLimit.max ||
+				concurrentData.get_current_speed() < concurrentData.get_gear_map()[gear_checking_].speedLimit.min)) {
 				std::cout << "La velocidad actual (" << concurrentData.get_current_speed() << " km/h) no está en el rango permitido para la marcha " << gear_checking_ << " ("
 					<< concurrentData.get_gear_map()[gear_checking_].speedLimit.min << " - "
 					<< concurrentData.get_gear_map()[gear_checking_].speedLimit.max << " km/h)." << std::endl;
