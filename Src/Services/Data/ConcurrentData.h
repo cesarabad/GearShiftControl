@@ -16,6 +16,7 @@ namespace Services::Data {
 		float current_speed_ { 0.0f };
         std::unordered_map<int, Core::Model::GearModel::Gear> gear_map_;
         mutable std::mutex gear_map_mutex_; // protege gear_map_
+		mutable std::mutex config_mutex_; // protege configuration_
 		Core::Model::Configuration::Configuration configuration_;
 
 
@@ -47,7 +48,7 @@ namespace Services::Data {
         std::unordered_map<int, Core::Model::GearModel::Gear> get_gear_map() const;
 
 		// Configuration
-		Core::Model::Configuration::Configuration get_configuration() const;
+		const Core::Model::Configuration::Configuration& get_configuration() ;
     };
 
 } // namespace Services::Data
