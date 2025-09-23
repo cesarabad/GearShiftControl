@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,11 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\Simulation.json" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Src\Core\Command\Keyboard\CommandA.h" />
     <ClInclude Include="Src\Core\Command\Keyboard\CommandB.h" />
+    <ClInclude Include="Src\Core\Model\Configuration\SecurityConfiguration.h" />
     <ClInclude Include="Src\Infrastructure\Device\DeviceConstants.h" />
     <ClInclude Include="Src\Infrastructure\Device\DeviceManager.h" />
     <ClInclude Include="Src\Infrastructure\Device\GearBoxControl\GearBoxControlDevice.h" />
@@ -34,6 +32,7 @@
     <ClInclude Include="Src\Infraestructure\Database\DatabaseConnection.h" />
     <ClInclude Include="Src\Infrastructure\Device\GearBoxShifter\GearBoxShifterDevice.h" />
     <ClInclude Include="Src\Infrastructure\Listenner\GearBoxShifter\GearBoxShifterListener.h" />
+    <ClInclude Include="Src\Infrastructure\Security\ClutchPressedChecker.h" />
     <ClInclude Include="Src\Infrastructure\Sensor\ClutchHallSensor.h" />
     <ClInclude Include="Src\Services\Data\ConcurrentData.h" />
     <ClInclude Include="Src\Services\Device\Device.h" />
@@ -43,18 +42,22 @@
     <ClInclude Include="Src\Services\Listener\DeviceListener.h" />
     <ClInclude Include="Src\Services\Mapping\GearProperties\GearPropertiesMapper.h" />
     <ClInclude Include="Src\Services\Mapping\JsonMapper.h" />
+    <ClInclude Include="Src\Services\Mapping\Security\SecurityMapper.h" />
     <ClInclude Include="Src\Services\Security\SafetyChecker.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\App\Main.cpp" />
+    <ClCompile Include="Src\Core\Model\Configuration\Configuration.h" />
     <ClCompile Include="Src\Core\Model\Gear.h" />
     <ClCompile Include="Src\Infrastructure\Configuration\Json\JsonReader.cpp" />
     <ClCompile Include="Src\Infrastructure\Device\Keyboard\KeyboardDevice.h" />
     <ClCompile Include="Src\Infrastructure\Listenner\GearBoxShifter\GearBoxShifterListener.cpp" />
     <ClCompile Include="Src\Infrastructure\Listenner\Keyboard\KeyboardListener.cpp" />
     <ClCompile Include="Src\Infrastructure\Listenner\Keyboard\KeyboardListener.h" />
+    <ClCompile Include="Src\Infrastructure\Security\ShiftGearChecker.h" />
     <ClCompile Include="Src\Services\Data\ConcurrentData.cpp" />
     <ClCompile Include="Src\Services\Mapping\GearProperties\GearPropertiesMapper.cpp" />
+    <ClCompile Include="Src\Services\Mapping\Security\SecurityMapper.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

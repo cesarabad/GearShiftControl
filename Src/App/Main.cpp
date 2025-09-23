@@ -7,6 +7,7 @@
 #include "../Infrastructure/Device/DeviceManager.h"
 #include "../Infrastructure/Listenner/Keyboard/KeyboardListener.h"
 #include "../Infrastructure/Sensor/ClutchHallSensor.h"
+#include "../Services/Mapping/Security/SecurityMapper.h"
 
 int main() {
     using namespace Services::Data;
@@ -24,6 +25,11 @@ int main() {
 
         auto& data = ConcurrentData::get_instance();
         data.set_gear_map(gearMap);
+
+        SecurityMapper securityMapper;
+        jsonReader.set_path("./Res/Security.json");
+		jsonContent = jsonReader.read();
+        data.get_configuration().Security = securityMapper.deserialize(jsonContent);
 
 		jsonReader.set_path("./Res/Devices.json");
 		jsonContent = jsonReader.read();

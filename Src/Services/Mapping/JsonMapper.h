@@ -2,7 +2,6 @@
 #include <string>
 
 namespace Services::Mapping {
-
     template <typename T>
     class JsonMapper {
     public:

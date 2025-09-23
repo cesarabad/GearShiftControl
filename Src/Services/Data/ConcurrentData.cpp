@@ -23,22 +23,14 @@ namespace Services::Data {
         return current_gear_.load();
     }
 
-    // Clutch pressed
-    void ConcurrentData::set_clutch_pressed(bool pressed) {
-        if (pressed != clutch_pressed_.load()) {
-            if (pressed) {
-                std::cout << "Embrague pisado" << std::endl;
-            }
-            else {
-                std::cout << "Embrague liberado" << std::endl;
-            }
-        }
-        clutch_pressed_.store(pressed);
-    }
+	// Clutch state
+	void ConcurrentData::set_clutch_pressed(bool pressed) {
+		clutch_pressed_.store(pressed);
+	}
 
-    bool ConcurrentData::is_clutch_pressed() const {
-        return clutch_pressed_.load();
-    }
+	bool ConcurrentData::is_clutch_pressed() const {
+		return clutch_pressed_.load();
+	}
 
     // Gear map
     void ConcurrentData::set_gear_map(const std::unordered_map<int, Core::Model::GearModel::Gear>& map) {
@@ -50,5 +42,10 @@ namespace Services::Data {
         std::lock_guard<std::mutex> lock(gear_map_mutex_);
         return gear_map_;
     }
+
+	// Configuration
+	Core::Model::Configuration::Configuration ConcurrentData::get_configuration() const {
+		return configuration_;
+	}
 
 } // namespace Services::Data

@@ -15,8 +15,7 @@ namespace Services::Mapping {
     public:
         ~GearPropertiesMapper() override = default;
 
-        std::unordered_map<int, Gear>
-            deserialize(const std::string& json) const override;
+        std::unordered_map<int, Gear> deserialize(const std::string& json) const override;
     };
 
 }
