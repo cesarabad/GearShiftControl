@@ -18,7 +18,6 @@ namespace Infrastructure::Listener {
 
            while (!stopFlag_.load()) {  
                std::string event = device.read(); // lee la marcha o el evento del shifter  
-			   std::cout << "GearBoxShifterListener detected event: " << event << std::endl; // Debug output
                if (event.empty()) continue;  
 
                if (Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.load() == Core::Model::Configuration::ShiftMode::Manual) {  
