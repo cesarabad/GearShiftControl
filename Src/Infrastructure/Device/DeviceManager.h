@@ -103,13 +103,13 @@ namespace Infrastructure::Device {
 		std::unique_ptr<GearBoxShifterDevice> gearbox_shifter_;
 
         void initialize_keyboard(const std::string& symlink) {
-            int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
+            int fd = open(symlink.c_str(), O_RDONLY);
             if (fd < 0) throw std::runtime_error("Cannot open keyboard device");
             keyboard_ = std::make_unique<KeyboardDevice>(fd);
         }
 
 		void initialize_gearbox_shifter(const std::string& symlink) {
-            int fd = open(symlink.c_str(), O_RDONLY | O_NONBLOCK);
+            int fd = open(symlink.c_str(), O_RDONLY);
             if (fd < 0) throw std::runtime_error("Cannot open gearbox shifter device");
             gearbox_shifter_ = std::make_unique<GearBoxShifterDevice>(fd);
 		}
