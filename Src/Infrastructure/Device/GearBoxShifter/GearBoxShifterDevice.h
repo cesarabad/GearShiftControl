@@ -30,11 +30,9 @@ namespace Infrastructure::Device {
             }
 
             // Solo nos interesan eventos de tipo "key" o "absolute" (según el dispositivo)
-            if (ev.type == EV_KEY) {
-                ss << "KEY_CODE:" << ev.code << " VALUE:" << ev.value;
-            }
-            else if (ev.type == EV_ABS) {
-                ss << "ABS_CODE:" << ev.code << " VALUE:" << ev.value;
+            if (ev.type == EV_KEY || ev.type == EV_ABS) {
+                ss << ev.code << ":" << ev.value;
+                std::cout << ss << std::endl;
             }
 
             return ss.str();
