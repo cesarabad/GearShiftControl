@@ -13,9 +13,8 @@ namespace Core::Commands::GearBoxShifter {
 
     class CommandSecuentialShift : public Command {
     public:
-        static CommandSecuentialShift& get_instance(std::string& message) {
-            static CommandSecuentialShift instance(message);
-            return instance;
+        static CommandSecuentialShift get_instance(const std::string& message) {
+            return CommandSecuentialShift(message);
         }
 
         void execute() {
@@ -31,9 +30,7 @@ namespace Core::Commands::GearBoxShifter {
             eventCode = decoded_message[0];
             eventValue = decoded_message[1];
 
-
             if (eventValue == 1) {
-                
                 using namespace Core::Model::Event;
                 switch ((GearBoxSecuentialShiftEventCode)eventCode) {
 
@@ -60,17 +57,15 @@ namespace Core::Commands::GearBoxShifter {
                     break;
                 }
             }
-            
-            delete& message_;
         }
 
     private:
-        CommandSecuentialShift(std::string& message) : message_(message) {};
+        // Guardamos copia de la cadena, no referencia
+        CommandSecuentialShift(const std::string& message) : message_(message) {};
         CommandSecuentialShift(const CommandSecuentialShift&) = delete;
         CommandSecuentialShift& operator=(const CommandSecuentialShift&) = delete;
 
-        std::string& message_;
-
+        std::string message_;
 
         std::vector<int> decode_message() {
             std::vector<int> decoded;

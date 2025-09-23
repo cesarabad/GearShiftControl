@@ -22,12 +22,12 @@ namespace Infrastructure::Listener {
 
                if (Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.load() == Core::Model::Configuration::ShiftMode::Manual) {  
                    // Capture 'event' explicitly in the lambda to fix the error  
-                   std::thread([&event]() {  
+                   std::thread([event]() {  
                        Core::Commands::GearBoxShifter::CommandManualShift::get_instance(event).execute();  
                        }).detach();  
                }  
                else if (Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.load() == Core::Model::Configuration::ShiftMode::Secuential) {  
-				   std::thread([&event]() {
+				   std::thread([event]() {
 					   Core::Commands::GearBoxShifter::CommandSecuentialShift::get_instance(event).execute();
 					   }).detach();
                }  
