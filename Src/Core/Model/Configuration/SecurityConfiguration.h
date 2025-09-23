@@ -3,7 +3,7 @@
 namespace Core::Model::Configuration {  
    class SecurityConfiguration {  
    public:  
-       bool ClutchPressed = false;  
+       bool CheckClutchPressed = false;  
        bool CheckSpeedRange = false;  
 
        // Default constructor  

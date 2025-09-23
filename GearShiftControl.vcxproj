@@ -19,9 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Src\Core\Command\Keyboard\CommandA.h" />
-    <ClInclude Include="Src\Core\Command\Keyboard\CommandB.h" />
+    <ClInclude Include="Src\Core\Command\Keyboard\CommandModeH.h" />
+    <ClInclude Include="Src\Core\Command\Keyboard\CommandModeSecuential.h" />
     <ClInclude Include="Src\Core\Model\Configuration\SecurityConfiguration.h" />
+    <ClInclude Include="Src\Core\Model\Configuration\ShiftMode.h" />
     <ClInclude Include="Src\Infrastructure\Device\DeviceConstants.h" />
     <ClInclude Include="Src\Infrastructure\Device\DeviceManager.h" />
     <ClInclude Include="Src\Infrastructure\Device\GearBoxControl\GearBoxControlDevice.h" />
@@ -47,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\App\Main.cpp" />
+    <ClCompile Include="Src\Core\Command\GearBoxShifter\CommandManualShift.h" />
     <ClCompile Include="Src\Core\Model\Configuration\Configuration.h" />
+    <ClCompile Include="Src\Core\Model\Event\GearBoxShifterEventCode.h" />
     <ClCompile Include="Src\Core\Model\Gear.h" />
     <ClCompile Include="Src\Infrastructure\Configuration\Json\JsonReader.cpp" />
     <ClCompile Include="Src\Infrastructure\Device\Keyboard\KeyboardDevice.h" />

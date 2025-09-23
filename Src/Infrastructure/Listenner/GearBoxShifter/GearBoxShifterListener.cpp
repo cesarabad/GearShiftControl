@@ -18,6 +18,9 @@ namespace Infrastructure::Listener {
                 std::string event = device.read(); // lee la marcha o el evento del shifter
                 if (event.empty()) continue;
 
+                // Cuando value es 0 significa que estamos en N (solo lo tendremos en cuenta cuando estemos en cambio en H.
+                //
+
                 // Aquí interpretas el evento
                 if (event == "KEY_CODE:291 VALUE:1") {
 

@@ -6,7 +6,7 @@ namespace Services::Mapping {
 		Core::Model::Configuration::SecurityConfiguration config;
 		try {
 			auto json = nlohmann::json::parse(jsonStr);
-			config.ClutchPressed = json.at("CheckClutch").get<bool>();
+			config.CheckClutchPressed = json.at("CheckClutchPressed").get<bool>();
 			config.CheckSpeedRange = json.at("CheckSpeedRange").get<bool>();
 		}
 		catch (const std::exception& e) {

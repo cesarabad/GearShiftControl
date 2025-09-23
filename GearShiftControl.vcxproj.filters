@@ -60,10 +60,10 @@
     <ClInclude Include="Src\Infrastructure\Device\GearBoxControl\GearBoxControlDevice.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Core\Command\Keyboard\CommandA.h">
+    <ClInclude Include="Src\Core\Command\Keyboard\CommandModeH.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Core\Command\Keyboard\CommandB.h">
+    <ClInclude Include="Src\Core\Command\Keyboard\CommandModeSecuential.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Src\Infrastructure\Device\DeviceManager.h">
@@ -88,6 +88,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Src\Services\Mapping\Security\SecurityMapper.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Core\Model\Configuration\ShiftMode.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -126,6 +129,12 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Src\Services\Mapping\Security\SecurityMapper.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Command\GearBoxShifter\CommandManualShift.h">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Core\Model\Event\GearBoxShifterEventCode.h">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

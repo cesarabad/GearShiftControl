@@ -17,6 +17,7 @@ namespace Services::Data {
     // Current gear
     void ConcurrentData::set_current_gear(int gear) {
         current_gear_.store(gear);
+        std::cout << "Se ha puesto la marcha " << gear << std::endl;
     }
 
     int ConcurrentData::get_current_gear() const {
@@ -25,11 +26,23 @@ namespace Services::Data {
 
 	// Clutch state
 	void ConcurrentData::set_clutch_pressed(bool pressed) {
-		clutch_pressed_.store(pressed);
+        if (is_clutch_pressed() != pressed) {
+		    clutch_pressed_.store(pressed);
+			std::cout << "Embrague " << (pressed ? "presionado" : "liberado") << std::endl;
+        }
 	}
 
 	bool ConcurrentData::is_clutch_pressed() const {
 		return clutch_pressed_.load();
+	}
+
+	// Current speed
+	void ConcurrentData::set_current_speed(float speed) {
+		current_speed_ = speed;
+		std::cout << "Velocidad actual: " << speed << " km/h" << std::endl;
+	}
+	float ConcurrentData::get_current_speed() const {
+		return current_speed_;
 	}
 
     // Gear map

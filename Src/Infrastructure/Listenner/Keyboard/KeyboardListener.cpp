@@ -1,8 +1,9 @@
 #include "KeyboardListener.h"
 #include "../../Device/DeviceManager.h"
-#include "../../../Core/Command/Keyboard/CommandA.h"
-#include "../../../Core/Command/Keyboard/CommandB.h"
+#include "../../../Core/Command/Keyboard/CommandModeH.h"
+#include "../../../Core/Command/Keyboard/CommandModeSecuential.h"
 #include <thread>
+#include <algorithm>
 #include <iostream>
 
 namespace Infrastructure::Listener {
@@ -18,15 +19,23 @@ namespace Infrastructure::Listener {
                 std::string input = device.read();
                 if (input.empty()) break; // EOF o error
 
-                if (input == "a") {
+                if (input == "h") {
                     std::thread([]() {
-                        Core::Commands::CommandA::get_instance().execute();
+                        Core::Commands::Keyboard::CommandModeH::get_instance().execute();
                         }).detach();
                 }
-                else if (input == "b") {
+                else if (input == "s") {
                     std::thread([]() {
-                        Core::Commands::CommandB::get_instance().execute();
+                        Core::Commands::Keyboard::CommandModeSecuential::get_instance().execute();
                         }).detach();
+                }
+                else if (std::all_of(input.begin(), input.end(), [](unsigned char c) { return std::isdigit(c) || c == '.'; })) {
+                    try {
+                        float value = std::stof(input);
+						Services::Data::ConcurrentData::get_instance().set_current_speed(value);
+                    } catch (const std::exception& e) {
+                        std::cerr << "Error parsing float: " << e.what() << std::endl;
+                    }
                 }
             }
             });

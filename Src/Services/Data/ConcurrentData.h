@@ -13,6 +13,7 @@ namespace Services::Data {
 
         std::atomic<int> current_gear_ { 0 };
 		std::atomic<bool> clutch_pressed_{ false };
+		float current_speed_ { 0.0f };
         std::unordered_map<int, Core::Model::GearModel::Gear> gear_map_;
         mutable std::mutex gear_map_mutex_; // protege gear_map_
 		Core::Model::Configuration::Configuration configuration_;
@@ -36,6 +37,10 @@ namespace Services::Data {
 		// Clutch state
 		void set_clutch_pressed(bool pressed);
 		bool is_clutch_pressed() const;
+
+		// Current speed
+		void set_current_speed(float speed);
+		float get_current_speed() const;
 
         // Gear map
         void set_gear_map(const std::unordered_map<int, Core::Model::GearModel::Gear>& map);
