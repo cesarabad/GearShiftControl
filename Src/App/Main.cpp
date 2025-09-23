@@ -29,7 +29,7 @@ int main() {
         SecurityMapper securityMapper;
         jsonReader.set_path("./Res/Security.json");
 		jsonContent = jsonReader.read();
-        data.get_configuration().Security = securityMapper.deserialize(jsonContent);
+        data.get_configuration().Security_ = securityMapper.deserialize(jsonContent);
 
 		jsonReader.set_path("./Res/Devices.json");
 		jsonContent = jsonReader.read();

@@ -37,21 +37,23 @@ namespace Core::Commands::GearBoxShifter {
                 using namespace Core::Model::Event;
                 switch ((GearBoxSecuentialShiftEventCode)eventCode) {
 
-                case GearBoxSecuentialShiftEventCode::UpShift:
+                case GearBoxSecuentialShiftEventCode::UpShift: {
                     int nextGear = Services::Data::ConcurrentData::get_instance().get_current_gear() + 1;
                     if (Infrastructure::Security::ShiftGearChecker::get_instance(nextGear).check()) {
                         // Escribir al arduino
                         Services::Data::ConcurrentData::get_instance().set_current_gear(nextGear);
                     }
                     break;
+                }
 
-                case GearBoxSecuentialShiftEventCode::DownShift:
-					int prevGear = Services::Data::ConcurrentData::get_instance().get_current_gear() - 1;
-					if (Infrastructure::Security::ShiftGearChecker::get_instance(prevGear).check()) {
-						// Escribir al arduino
-						Services::Data::ConcurrentData::get_instance().set_current_gear(prevGear);
-					}
-					break;
+                case GearBoxSecuentialShiftEventCode::DownShift: {
+                    int prevGear = Services::Data::ConcurrentData::get_instance().get_current_gear() - 1;
+                    if (Infrastructure::Security::ShiftGearChecker::get_instance(prevGear).check()) {
+                        // Escribir al arduino
+                        Services::Data::ConcurrentData::get_instance().set_current_gear(prevGear);
+                    }
+                    break;
+                }
 
                 default:
                     std::cout << "Código de evento no reconocido: " << eventCode << std::endl;
