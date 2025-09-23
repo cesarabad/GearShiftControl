@@ -2,6 +2,7 @@
 #include "../../Device/DeviceManager.h"
 #include "../../../Core/Command/Keyboard/CommandModeH.h"
 #include "../../../Core/Command/Keyboard/CommandModeSecuential.h"
+#include "../../../Core/Command/Keyboard/CommandSimulatedSpeed.h"
 #include <thread>
 #include <algorithm>
 #include <iostream>
@@ -32,7 +33,9 @@ namespace Infrastructure::Listener {
                 else if (std::all_of(input.begin(), input.end(), [](unsigned char c) { return std::isdigit(c) || c == '.'; })) {
                     try {
                         float value = std::stof(input);
-						Services::Data::ConcurrentData::get_instance().set_current_speed(value);
+                        std::thread([value]() {
+                            Core::Commands::Keyboard::CommandSimulatedSpeed::get_instance(value).execute();
+                            }).detach();
                     } catch (const std::exception& e) {
                         std::cerr << "Error parsing float: " << e.what() << std::endl;
                     }

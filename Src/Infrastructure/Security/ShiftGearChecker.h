@@ -28,13 +28,13 @@ namespace Infrastructure::Security {
 				return false;
 			}
 
-			if (concurrentData.get_configuration().Security.CheckClutchPressed &&
+			if (concurrentData.get_configuration().Security_.CheckClutchPressed &&
 				!concurrentData.is_clutch_pressed()) {
 				std::cout << "El embrague no está presionado, no se puede cambiar de marcha." << std::endl;
 				return false;
 			}
 
-			if (concurrentData.get_configuration().Security.CheckSpeedRange &&
+			if (concurrentData.get_configuration().Security_.CheckSpeedRange &&
 				concurrentData.get_current_speed() >= concurrentData.get_gear_map()[gear_checking_].speedLimit.max ||
 				concurrentData.get_current_speed() <= concurrentData.get_gear_map()[gear_checking_].speedLimit.min) {
 				std::cout << "La velocidad actual (" << concurrentData.get_current_speed() << " km/h) no está en el rango permitido para la marcha " << gear_checking_ << " ("
@@ -43,7 +43,7 @@ namespace Infrastructure::Security {
 				return false;
 			}
 
-			return true;//Services::Data::ConcurrentData::get_instance().is_clutch_pressed();
+			return true;
 		}
 
 	private:

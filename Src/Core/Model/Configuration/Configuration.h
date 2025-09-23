@@ -8,7 +8,7 @@ namespace Core::Model::Configuration {
    
 
    struct Configuration {  
-       SecurityConfiguration Security;  
-       std::atomic<ShiftMode> ShiftMode { ShiftMode::Undefined };  
+       SecurityConfiguration Security_;  
+       std::atomic<ShiftMode> ShiftMode_ { ShiftMode::Undefined };  
    };  
 }

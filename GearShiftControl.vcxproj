@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="Src\Core\Command\Keyboard\CommandModeH.h" />
     <ClInclude Include="Src\Core\Command\Keyboard\CommandModeSecuential.h" />
+    <ClInclude Include="Src\Core\Command\Keyboard\CommandSimulatedSpeed.h" />
     <ClInclude Include="Src\Core\Model\Configuration\SecurityConfiguration.h" />
     <ClInclude Include="Src\Core\Model\Configuration\ShiftMode.h" />
     <ClInclude Include="Src\Infrastructure\Device\DeviceConstants.h" />
@@ -49,6 +50,7 @@
   <ItemGroup>
     <ClCompile Include="Src\App\Main.cpp" />
     <ClCompile Include="Src\Core\Command\GearBoxShifter\CommandManualShift.h" />
+    <ClCompile Include="Src\Core\Command\GearBoxShifter\CommandSecuentialShift.h" />
     <ClCompile Include="Src\Core\Model\Configuration\Configuration.h" />
     <ClCompile Include="Src\Core\Model\Event\GearBoxShifterEventCode.h" />
     <ClCompile Include="Src\Core\Model\Gear.h" />

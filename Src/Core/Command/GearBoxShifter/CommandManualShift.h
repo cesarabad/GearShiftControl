@@ -13,9 +13,8 @@ namespace Core::Commands::GearBoxShifter {
 
    class CommandManualShift : public Command {  
    public:  
-       static CommandManualShift& get_instance(const std::string& message) {  
-           static CommandManualShift instance;  
-           instance.message_ = message;  
+       static CommandManualShift& get_instance(std::string& message) {  
+           static CommandManualShift instance(message); 
            return instance;  
        }  
 
@@ -29,13 +28,9 @@ namespace Core::Commands::GearBoxShifter {
                return;
            }  
 
-           if (!Infrastructure::Security::ShiftGearChecker::get_instance().check()) {
-			   std::cout << "Condiciones de seguridad no cumplidas para cambiar de marcha" << std::endl;
-			   return;
-           }
-
            eventCode = decoded_message[0];  
            eventValue = decoded_message[1];
+
 
 		   if (eventValue == 0) {
                if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 0) {
@@ -48,7 +43,8 @@ namespace Core::Commands::GearBoxShifter {
 
                case GearBoxManualShiftEventCode::FirstGear:
                case GearBoxManualShiftEventCode::FirstGear2:
-                   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 1) {
+                   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 1 &&
+                       Infrastructure::Security::ShiftGearChecker::get_instance(1).check()) {
 					   // Escribir al arduino
 					   Services::Data::ConcurrentData::get_instance().set_current_gear(1);
                    }
@@ -56,35 +52,40 @@ namespace Core::Commands::GearBoxShifter {
 
 			   case GearBoxManualShiftEventCode::SecondGear:
 			   case GearBoxManualShiftEventCode::SecondGear2:
-				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 2) {
+				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 2 &&
+                       Infrastructure::Security::ShiftGearChecker::get_instance(2).check()) {
 					   // Escribir al arduino
 					   Services::Data::ConcurrentData::get_instance().set_current_gear(2);
 				   }
                    break;
 
 			   case GearBoxManualShiftEventCode::ThirdGear:
-				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 3) {
+				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 3 &&
+                       Infrastructure::Security::ShiftGearChecker::get_instance(3).check()) {
 					   // Escribir al arduino
 					   Services::Data::ConcurrentData::get_instance().set_current_gear(3);
 				   }
 				   break;
 
 			   case GearBoxManualShiftEventCode::FourthGear:
-				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 4) {
+				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 4 && 
+                       Infrastructure::Security::ShiftGearChecker::get_instance(4).check()) {
 					   // Escribir al arduino
 					   Services::Data::ConcurrentData::get_instance().set_current_gear(4);
 				   }
 				   break;
 
 			   case GearBoxManualShiftEventCode::FifthGear:
-				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 5) {
+				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 5 && 
+                       Infrastructure::Security::ShiftGearChecker::get_instance(5).check()) {
 					   // Escribir al arduino
 					   Services::Data::ConcurrentData::get_instance().set_current_gear(5);
 				   }
 				   break;
 
 			   case GearBoxManualShiftEventCode::Reverse:
-				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != -1) {
+				   if (Services::Data::ConcurrentData::get_instance().get_current_gear() != -1 && 
+                       Infrastructure::Security::ShiftGearChecker::get_instance(-1).check()) {
 					   // Escribir al arduino
 					   Services::Data::ConcurrentData::get_instance().set_current_gear(-1);
 				   }
@@ -94,14 +95,15 @@ namespace Core::Commands::GearBoxShifter {
 				   std::cout << "Código de evento no reconocido: " << eventCode << std::endl;
 				   break;
            }
+           delete &message_;
        }  
 
    private:  
-       CommandManualShift() = default;  
+       CommandManualShift(std::string& message) : message_(message) {};
        CommandManualShift(const CommandManualShift&) = delete;  
        CommandManualShift& operator=(const CommandManualShift&) = delete;  
        
-       std::string message_;  
+       std::string& message_;  
 
 
        std::vector<int> decode_message() {  
