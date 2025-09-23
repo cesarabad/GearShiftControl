@@ -16,7 +16,7 @@ namespace Core::Commands::Keyboard {
 
         void execute() override {
             std::cout << "Usando cambio secuencial\n";
-			Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode.store(Core::Model::Configuration::ShiftMode::Secuential);
+			Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.store(Core::Model::Configuration::ShiftMode::Secuential);
         }
 
     private:

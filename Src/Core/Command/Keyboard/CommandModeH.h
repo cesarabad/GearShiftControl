@@ -16,7 +16,7 @@ namespace Core::Commands::Keyboard {
 
         void execute() override {
             std::cout << "Usando cambio en H\n";
-			Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode.store(Core::Model::Configuration::ShiftMode::Manual);
+			Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.store(Core::Model::Configuration::ShiftMode::Manual);
         }
 
     private:
