@@ -4,8 +4,8 @@
     "RotationX": 0.0,
     "RotationY": 0.0,
     "MinSpeed": 0.0,
-    "MaxSpeed": 300.0,
-    "MaxSpeedToReduce": 300.0
+    "MaxSpeed": 30.0,
+    "MaxSpeedToReduce": 30.0
   },
   {
     "GearNumber": -1,
