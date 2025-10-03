@@ -14,7 +14,7 @@ namespace Core::Model::Event {
 	};
 
 	enum class GearBoxSecuentialShiftEventCode {
-		UpShift = 291,
-		DownShift = 290
+		UpShift = 290,
+		DownShift = 291
 	};
 }

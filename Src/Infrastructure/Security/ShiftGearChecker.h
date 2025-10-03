@@ -35,12 +35,12 @@ namespace Infrastructure::Security {
 			}
 
 			if (concurrentData.get_configuration().Security_.CheckSpeedRange &&
-				(concurrentData.get_current_speed() > concurrentData.get_gear_map()[gear_checking_].speedLimit.max ||
+				(concurrentData.get_current_speed() > concurrentData.get_gear_map()[gear_checking_].speedLimit.maxToReduce ||
 				concurrentData.get_current_speed() < concurrentData.get_gear_map()[gear_checking_].speedLimit.min)) {
 
 
 				if (concurrentData.get_current_speed() < concurrentData.get_gear_map()[concurrentData.get_current_gear()].speedLimit.min &&
-					concurrentData.get_current_speed() < concurrentData.get_gear_map()[gear_checking_].speedLimit.max &&
+					concurrentData.get_current_speed() < concurrentData.get_gear_map()[gear_checking_].speedLimit.maxToReduce &&
 					concurrentData.get_current_gear() > gear_checking_) {
 
 					std::cout << "La marcha " << gear_checking_ << " tambien esta fuera de rango, pero no pasa la velocidad maxima..." << std::endl;
