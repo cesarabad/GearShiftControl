@@ -10,12 +10,12 @@
 
 namespace Infrastructure::Device {
 
-    class GearBoxShifterDevice : public Services::Device::InputDevice {
+    class GearBoxShifterDevice : public Services::Device::InputDevice<std::string> {
     public:
 
         explicit GearBoxShifterDevice(int fd)
             : Services::Device::Device(fd),
-            Services::Device::InputDevice(fd,
+            Services::Device::InputDevice<std::string>(fd,
                 std::make_unique<Infrastructure::Listener::GearBoxShifterListener>()) {
         }
 

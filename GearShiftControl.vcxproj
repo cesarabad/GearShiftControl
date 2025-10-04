@@ -38,7 +38,6 @@
     <ClInclude Include="Src\Infrastructure\Sensor\ClutchHallSensor.h" />
     <ClInclude Include="Src\Services\Data\ConcurrentData.h" />
     <ClInclude Include="Src\Services\Device\Device.h" />
-    <ClInclude Include="Src\Services\Device\InputOutput\InputOutputDevice.h" />
     <ClInclude Include="Src\Services\Device\Input\InputDevice.h" />
     <ClInclude Include="Src\Services\Device\Output\OutputDevice.h" />
     <ClInclude Include="Src\Services\Listener\DeviceListener.h" />

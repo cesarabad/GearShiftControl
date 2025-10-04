@@ -10,6 +10,7 @@
 
 namespace Services::Device {
 
+    template <typename T>
     class InputDevice : public virtual Device {
     public:
         InputDevice(int device_serial_fd,
@@ -24,7 +25,7 @@ namespace Services::Device {
             set_active(false);
         }
 
-        virtual std::string read() const = 0;
+        virtual T read() const = 0;
 
         void set_active(bool active) { 
             std::lock_guard<std::mutex> lock(mutex_);
