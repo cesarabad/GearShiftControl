@@ -1,4 +1,4 @@
 {
-    "CheckClutchPressed": true,
-    "CheckSpeedRange": true
+    "CheckClutchPressed": false,
+    "CheckSpeedRange": false
 }
