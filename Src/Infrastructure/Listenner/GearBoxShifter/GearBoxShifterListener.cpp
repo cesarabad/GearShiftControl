@@ -3,6 +3,7 @@
 #include "../../../Services/Data/ConcurrentData.h"  
 #include "../../../Core/Command/GearBoxShifter/CommandManualShift.h"  
 #include "../../../Core/Command/GearBoxShifter/CommandSecuentialShift.h"
+#include "../../../Core/Model//Event/GearBoxShifterEventCode.h"
 #include <thread>  
 #include <iostream>  
 
@@ -24,16 +25,27 @@ namespace Infrastructure::Listener {
 				   continue; // Si hay error, continuar al siguiente ciclo
                }
 
+               if ((Core::Model::Event::GearBoxGenericEventCode)event.code == Core::Model::Event::GearBoxGenericEventCode::SuccessShift) {
+                   can_shift = true;
+				   continue;
+               }
+
+               if (!can_shift) {
+				   continue;
+               }
+
                if (Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.load() == Core::Model::Configuration::ShiftMode::Manual) {  
                    // Capture 'event' explicitly in the lambda to fix the error  
                    std::thread([event]() {  
                        Core::Commands::GearBoxShifter::CommandManualShift::get_instance(event).execute();  
                        }).detach();  
+				   can_shift = false;
                }  
                else if (Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.load() == Core::Model::Configuration::ShiftMode::Secuential) {  
 				   std::thread([event]() {
 					   Core::Commands::GearBoxShifter::CommandSecuentialShift::get_instance(event).execute();
 					   }).detach();
+				   can_shift = false;
                }  
            }  
        });  

@@ -1,6 +1,11 @@
 #pragma once
 
 namespace Core::Model::Event {
+
+	enum class GearBoxGenericEventCode {
+		SuccessShift = 4
+	};
+
 	enum class GearBoxManualShiftEventCode {
 		Neutral = 0,
 		FirstGear = 295,
