@@ -19,6 +19,11 @@ namespace Infrastructure::Listener {
            while (!stopFlag_.load()) {  
                input_event event = device.read(); // lee la marcha o el evento del shifter  
 
+               if (event == NULL) {
+				   std::cerr << "Error leyendo el dispositivo de cambio de marchas" << std::endl;
+				   continue; // Si hay error, continuar al siguiente ciclo
+               }
+
                if (Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.load() == Core::Model::Configuration::ShiftMode::Manual) {  
                    // Capture 'event' explicitly in the lambda to fix the error  
                    std::thread([event]() {  
