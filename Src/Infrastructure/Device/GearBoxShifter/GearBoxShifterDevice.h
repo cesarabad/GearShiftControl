@@ -10,18 +10,17 @@
 
 namespace Infrastructure::Device {
 
-    class GearBoxShifterDevice : public Services::Device::InputDevice<std::string> {
+    class GearBoxShifterDevice : public Services::Device::InputDevice<input_event> {
     public:
 
         explicit GearBoxShifterDevice(int fd)
             : Services::Device::Device(fd),
-            Services::Device::InputDevice<std::string>(fd,
+            Services::Device::InputDevice<input_event>(fd,
                 std::make_unique<Infrastructure::Listener::GearBoxShifterListener>()) {
         }
 
-        std::string read() const override {
+        input_event read() const override {
             struct input_event ev;
-            std::stringstream ss;
 
             // Bloquea hasta que haya un evento
             ssize_t n = ::read(device_serial_fd_, &ev, sizeof(ev));
@@ -31,12 +30,7 @@ namespace Infrastructure::Device {
                 return "";
             }
 
-            // Solo nos interesan eventos de tipo "key" o "absolute"
-            if (ev.type == EV_KEY || ev.type == EV_ABS) {
-                ss << ev.code << ":" << ev.value;
-            }
-
-            return ss.str();
+            return ev;
         }
     };
 

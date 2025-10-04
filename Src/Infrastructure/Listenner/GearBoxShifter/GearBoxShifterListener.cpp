@@ -17,8 +17,7 @@ namespace Infrastructure::Listener {
            auto& device = Infrastructure::Device::DeviceManager::get_instance("").get_gearbox_shifter();  
 
            while (!stopFlag_.load()) {  
-               std::string event = device.read(); // lee la marcha o el evento del shifter  
-               if (event.empty()) continue;  
+               input_event event = device.read(); // lee la marcha o el evento del shifter  
 
                if (Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.load() == Core::Model::Configuration::ShiftMode::Manual) {  
                    // Capture 'event' explicitly in the lambda to fix the error  

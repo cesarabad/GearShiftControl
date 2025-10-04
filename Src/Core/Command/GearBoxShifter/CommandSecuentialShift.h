@@ -14,28 +14,18 @@ namespace Core::Commands::GearBoxShifter {
 
     class CommandSecuentialShift : public Command {
     public:
-        static CommandSecuentialShift get_instance(const std::string& message) {
-            return CommandSecuentialShift(message);
+        static CommandSecuentialShift get_instance(const input_event& event) {
+            return CommandSecuentialShift(event);
         }
 
         void execute() {
-            auto decoded_message = decode_message();
-            int eventCode;
-            int eventValue;
 
-            if (decoded_message.empty()) {
-                std::cout << "Mensaje vacío o inválido" << std::endl;
-                return;
-            }
 
-            eventCode = decoded_message[0];
-            eventValue = decoded_message[1];
-
-            if (eventValue == 1) {
+            if (event_.value == 1) {
                 using namespace Core::Model::Event;
                 Services::Data::ConcurrentData& concurrentData = Services::Data::ConcurrentData::get_instance();
 				Infrastructure::Device::DeviceManager& deviceManager = Infrastructure::Device::DeviceManager::get_instance("");
-                switch ((GearBoxSecuentialShiftEventCode)eventCode) {
+                switch ((GearBoxSecuentialShiftEventCode)event_.code) {
 
                 case GearBoxSecuentialShiftEventCode::UpShift: {
                     int nextGear = concurrentData.get_current_gear() + 1;
@@ -67,34 +57,12 @@ namespace Core::Commands::GearBoxShifter {
 
     private:
         // Guardamos copia de la cadena, no referencia
-        CommandSecuentialShift(const std::string& message) : message_(message) {};
+        CommandSecuentialShift(const input_event& event) : event_(event) {};
         CommandSecuentialShift(const CommandSecuentialShift&) = delete;
         CommandSecuentialShift& operator=(const CommandSecuentialShift&) = delete;
 
-        std::string message_;
+        input_event event_;
 
-        std::vector<int> decode_message() {
-            std::vector<int> decoded;
-            std::stringstream ss(message_);
-            std::string token;
-
-            while (std::getline(ss, token, ':')) {
-                try {
-                    decoded.push_back(std::stoi(token));
-                }
-                catch (const std::invalid_argument&) {
-                    std::cerr << "Token inválido: " << token << std::endl;
-                }
-                catch (const std::out_of_range&) {
-                    std::cerr << "Número fuera de rango: " << token << std::endl;
-                }
-            }
-            if (decoded.size() != 2) {
-                decoded.clear();
-                std::cerr << "Mensaje no tiene el formato esperado" << std::endl;
-            }
-            return decoded;
-        }
     };
 
 }

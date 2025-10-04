@@ -15,27 +15,17 @@ namespace Core::Commands::GearBoxShifter {
     class CommandManualShift : public Command {
     public:
         // Cada llamada recibe un mensaje y devuelve un objeto con su propia copia
-        static CommandManualShift get_instance(const std::string& message) {
-            return CommandManualShift(message);
+        static CommandManualShift get_instance(const input_event& event) {
+            return CommandManualShift(event);
         }
 
         void execute() {
-            auto decoded_message = decode_message();
-            int eventCode;
-            int eventValue;
 
-            if (decoded_message.empty()) {
-                std::cout << "Mensaje vacío o inválido" << std::endl;
-                return;
-            }
-
-            eventCode = decoded_message[0];
-            eventValue = decoded_message[1];
 
 			Services::Data::ConcurrentData& concurrentData = Services::Data::ConcurrentData::get_instance();
 			Infrastructure::Device::DeviceManager& deviceManager = Infrastructure::Device::DeviceManager::get_instance("");
 
-            if (eventValue == 0) {
+            if (event_.value == 0) {
                 if (concurrentData.get_current_gear() != 0) {
                     concurrentData.set_current_gear(0); // Poner en punto muerto
                 }
@@ -43,7 +33,7 @@ namespace Core::Commands::GearBoxShifter {
             }
 
             using namespace Core::Model::Event;
-            switch ((GearBoxManualShiftEventCode)eventCode) {
+            switch ((GearBoxManualShiftEventCode)event_.code) {
 
             case GearBoxManualShiftEventCode::FirstGear:
             case GearBoxManualShiftEventCode::FirstGear2:
@@ -102,41 +92,19 @@ namespace Core::Commands::GearBoxShifter {
                 break;
 
             default:
-                std::cout << "Código de evento no reconocido: " << eventCode << std::endl;
+                std::cout << "Código de evento no reconocido: " << event_.code << std::endl;
                 break;
             }
         }
 
     private:
         // Guardamos copia de la cadena, no referencia
-        CommandManualShift(const std::string& message) : message_(message) {};
+        CommandManualShift(const input_event& event) : event_(event) {};
         CommandManualShift(const CommandManualShift&) = delete;
         CommandManualShift& operator=(const CommandManualShift&) = delete;
 
-        std::string message_;
+        input_event event_;
 
-        std::vector<int> decode_message() {
-            std::vector<int> decoded;
-            std::stringstream ss(message_);
-            std::string token;
-
-            while (std::getline(ss, token, ':')) {
-                try {
-                    decoded.push_back(std::stoi(token));
-                }
-                catch (const std::invalid_argument&) {
-                    std::cerr << "Token inválido: " << token << std::endl;
-                }
-                catch (const std::out_of_range&) {
-                    std::cerr << "Número fuera de rango: " << token << std::endl;
-                }
-            }
-            if (decoded.size() != 2) {
-                decoded.clear();
-                std::cerr << "Mensaje no tiene el formato esperado" << std::endl;
-            }
-            return decoded;
-        }
     };
 
 }
