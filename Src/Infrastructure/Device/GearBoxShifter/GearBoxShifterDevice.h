@@ -27,7 +27,7 @@ namespace Infrastructure::Device {
             if (n != sizeof(ev)) {
                 // Esto solo ocurrirá si hay error
                 std::cerr << "Error leyendo el dispositivo" << std::endl;
-                return NULL;
+                ev.value = -1;
             }
 
             return ev;

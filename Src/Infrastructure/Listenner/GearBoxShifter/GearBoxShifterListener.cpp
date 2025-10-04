@@ -19,7 +19,7 @@ namespace Infrastructure::Listener {
            while (!stopFlag_.load()) {  
                input_event event = device.read(); // lee la marcha o el evento del shifter  
 
-               if (event == NULL) {
+               if (event.value == -1) {
 				   std::cerr << "Error leyendo el dispositivo de cambio de marchas" << std::endl;
 				   continue; // Si hay error, continuar al siguiente ciclo
                }
