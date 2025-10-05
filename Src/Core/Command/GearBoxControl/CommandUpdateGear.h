@@ -20,7 +20,7 @@ namespace Core::Commands::GearBoxControl {
 
       void execute() override {  
           Services::Data::ConcurrentData& concurrentData = Services::Data::ConcurrentData::get_instance();  
-
+		  std::cout << "Mensaje recibido del dispositivo de control de marchas: " << message_ << std::endl;
           if (concurrentData.get_next_gear() == nullptr) {  
               return;  
           }  
