@@ -19,7 +19,7 @@ namespace Infrastructure::Listener {
 					std::cerr << "Error leyendo el dispositivo de control de marchas" << std::endl;
 					continue;
 				}
-
+				std::cout << "Mensaje recibido del dispositivo de control de marchas: " << message << std::endl;
                 std::thread([message]() {
                     Core::Commands::GearBoxControl::CommandUpdateGear::get_instance(message).execute();
                     }).detach();
