@@ -22,8 +22,9 @@ namespace Services::Mapping {
                 gear.speedLimit.max = item.at("MaxSpeed").get<float>();
                 gear.speedLimit.maxToReduce = item.at("MaxSpeedToReduce").get<float>();
 
-                // Gear number as key
+                // Gear number
                 int gearNumber = item.at("GearNumber").get<int>();
+				gear.number = gearNumber;
                 gearMap[gearNumber] = gear;
             }
         }

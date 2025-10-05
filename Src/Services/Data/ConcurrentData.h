@@ -12,6 +12,8 @@ namespace Services::Data {
     private:
 
         std::atomic<int> current_gear_ { 0 };
+		Core::Model::GearModel::Gear* next_gear_ = nullptr;
+		mutable std::mutex shift_mutex_; // protege operaciones de cambio de marcha
 		std::atomic<bool> clutch_pressed_{ false };
 		float current_speed_ { 0.0f };
         std::unordered_map<int, Core::Model::GearModel::Gear> gear_map_;
@@ -46,6 +48,12 @@ namespace Services::Data {
         // Gear map
         void set_gear_map(const std::unordered_map<int, Core::Model::GearModel::Gear>& map);
         std::unordered_map<int, Core::Model::GearModel::Gear> get_gear_map() const;
+
+		// Next gear
+		void set_next_gear(Core::Model::GearModel::Gear* gear);
+		Core::Model::GearModel::Gear* get_next_gear() const;
+
+		std::mutex& get_shift_mutex() { return shift_mutex_; }
 
 		// Configuration
 		Core::Model::Configuration::Configuration& get_configuration() ;

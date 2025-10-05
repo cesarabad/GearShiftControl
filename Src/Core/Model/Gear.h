@@ -10,6 +10,7 @@ namespace Core::Model::GearModel {
 		float maxToReduce;
 	};
 	struct Gear {
+		int number;
 		Rotation rotation;
 		SpeedLimit speedLimit;
 	};

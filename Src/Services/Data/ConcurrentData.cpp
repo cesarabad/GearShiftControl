@@ -63,5 +63,12 @@ namespace Services::Data {
         return configuration_;
     }
 
+    void ConcurrentData::set_next_gear(Core::Model::GearModel::Gear* gear) {
+        next_gear_ = gear;
+    }
+
+    Core::Model::GearModel::Gear* ConcurrentData::get_next_gear() const {
+        return next_gear_;
+    }
 
 } // namespace Services::Data
