@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -17,62 +17,12 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Src\Core\Command\Keyboard\CommandModeH.h" />
-    <ClInclude Include="Src\Core\Command\Keyboard\CommandModeSecuential.h" />
-    <ClInclude Include="Src\Core\Command\Keyboard\CommandSimulatedSpeed.h" />
-    <ClInclude Include="Src\Core\Model\Configuration\SecurityConfiguration.h" />
-    <ClInclude Include="Src\Core\Model\Configuration\ShiftMode.h" />
-    <ClInclude Include="Src\Infrastructure\Device\DeviceConstants.h" />
-    <ClInclude Include="Src\Infrastructure\Device\DeviceManager.h" />
-    <ClInclude Include="Src\Infrastructure\Device\GearBoxControl\GearBoxControlDevice.h" />
-    <ClInclude Include="Src\Core\Command\Command.h" />
-    <ClInclude Include="Src\Core\Simulation\DeviceSimulator.h" />
-    <ClInclude Include="Src\Infraestructure\Configuration\DataReader.h" />
-    <ClInclude Include="Src\Infraestructure\Configuration\Json\JsonReader.h" />
-    <ClInclude Include="Src\Infraestructure\Database\DatabaseConnection.h" />
-    <ClInclude Include="Src\Infrastructure\Device\GearBoxShifter\GearBoxShifterDevice.h" />
-    <ClInclude Include="Src\Infrastructure\Listenner\GearBoxControl\GearBoxControlListener.h" />
-    <ClInclude Include="Src\Infrastructure\Listenner\GearBoxShifter\GearBoxShifterListener.h" />
-    <ClInclude Include="Src\Infrastructure\Security\ClutchPressedChecker.h" />
-    <ClInclude Include="Src\Infrastructure\Sensor\ClutchHallSensor.h" />
-    <ClInclude Include="Src\Services\Data\ConcurrentData.h" />
-    <ClInclude Include="Src\Services\Device\Device.h" />
-    <ClInclude Include="Src\Services\Device\Input\InputDevice.h" />
-    <ClInclude Include="Src\Services\Device\Output\OutputDevice.h" />
-    <ClInclude Include="Src\Services\Listener\DeviceListener.h" />
-    <ClInclude Include="Src\Services\Mapping\GearProperties\GearPropertiesMapper.h" />
-    <ClInclude Include="Src\Services\Mapping\JsonMapper.h" />
-    <ClInclude Include="Src\Services\Mapping\Security\SecurityMapper.h" />
-    <ClInclude Include="Src\Services\Security\SafetyChecker.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Src\App\Main.cpp" />
-    <ClCompile Include="Src\Core\Command\GearBoxControl\CommandUpdateGear.h" />
-    <ClCompile Include="Src\Core\Command\GearBoxShifter\CommandManualShift.h" />
-    <ClCompile Include="Src\Core\Command\GearBoxShifter\CommandSecuentialShift.h" />
-    <ClCompile Include="Src\Core\Model\Configuration\Configuration.h" />
-    <ClCompile Include="Src\Core\Model\Event\GearBoxShifterEventCode.h" />
-    <ClCompile Include="Src\Core\Model\Gear.h" />
-    <ClCompile Include="Src\Infrastructure\Configuration\Json\JsonReader.cpp" />
-    <ClCompile Include="Src\Infrastructure\Device\Keyboard\KeyboardDevice.h" />
-    <ClCompile Include="Src\Infrastructure\Listenner\GearBoxControl\GearBoxControlListener.cpp" />
-    <ClCompile Include="Src\Infrastructure\Listenner\GearBoxShifter\GearBoxShifterListener.cpp" />
-    <ClCompile Include="Src\Infrastructure\Listenner\Keyboard\KeyboardListener.cpp" />
-    <ClCompile Include="Src\Infrastructure\Listenner\Keyboard\KeyboardListener.h" />
-    <ClCompile Include="Src\Infrastructure\Security\ShiftGearChecker.h" />
-    <ClCompile Include="Src\Services\Data\ConcurrentData.cpp" />
-    <ClCompile Include="Src\Services\Mapping\GearProperties\GearPropertiesMapper.cpp" />
-    <ClCompile Include="Src\Services\Mapping\Security\SecurityMapper.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="CMakeLists.txt" />
+
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e9520c0d-6310-4008-b606-caf940589178}</ProjectGuid>
+    <ProjectGuid>{b1f19a36-8408-40ba-8152-8b06a0374b51}</ProjectGuid>
     <RootNamespace>GearShiftControl</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -103,24 +53,27 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Label="Shared">
+  <ImportGroup Label="Shared" >
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
+    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+    <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    </ImportGroup>
+
   <PropertyGroup Label="UserMacros" />
+
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -155,8 +108,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -171,8 +122,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>Src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -181,6 +130,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+
+  <ItemGroup></ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
