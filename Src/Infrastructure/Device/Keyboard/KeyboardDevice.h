@@ -7,12 +7,12 @@
 
 namespace Infrastructure::Device {
 
-    class KeyboardDevice : public Services::Device::InputDevice<std::string> {
+    class KeyboardDevice : public ::Device::InputDevice<std::string> {
     public:
         
         explicit KeyboardDevice(int fd)
-            : Services::Device::Device(fd),
-            Services::Device::InputDevice<std::string>(fd,
+            : ::Device::Device(fd),
+            ::Device::InputDevice<std::string>(fd,
                 std::make_unique<Infrastructure::Listener::KeyboardListener>()) {
         }
 
