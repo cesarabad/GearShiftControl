@@ -4,7 +4,7 @@
 
 namespace Infrastructure::Listener {
 
-    class GearBoxControlListener : public Listener::DeviceListener {
+    class GearBoxControlListener : public ::Listener::DeviceListener {
     public:
         void listen() const override;
 
