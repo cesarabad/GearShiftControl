@@ -1,10 +1,10 @@
 #pragma once
-#include "../../../../../DeviceDomain/include/Listener/DeviceListener.h"
+#include "Listener/DeviceListener.h"
 #include <string>
 
 namespace Infrastructure::Listener {
 
-    class GearBoxControlListener : public Services::Listener::DeviceListener {
+    class GearBoxControlListener : public Listener::DeviceListener {
     public:
         void listen() const override;
 
