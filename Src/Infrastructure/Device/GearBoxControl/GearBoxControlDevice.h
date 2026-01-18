@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../Services/Device/Output/OutputDevice.h"
+#include "../../../../../DeviceDomain/include/Device/Output/OutputDevice.h"
 #include "../../../Core/Model/Gear.h"
 #include "../../../Services/Data/ConcurrentData.h"
 #include <memory>

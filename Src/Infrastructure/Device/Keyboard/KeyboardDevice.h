@@ -1,7 +1,7 @@
 #pragma once
-#include "../../../Services/Device/Input/InputDevice.h"
-#include "../../../Services/Listener/DeviceListener.h"
-#include "../../Listenner/Keyboard/KeyboardListener.h"
+#include "../../../../../DeviceDomain/include/Device/Input/InputDevice.h"
+#include "../../../../../DeviceDomain/include/Listener/DeviceListener.h"
+#include "../../Listener/Keyboard/KeyboardListener.h"
 #include <memory>
 #include <iostream>
 

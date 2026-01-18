@@ -1,6 +1,6 @@
 #pragma once
-#include "../../../Services/Device/Input/InputDevice.h"
-#include "../../../Services/Listener/DeviceListener.h"
+#include "../../../../../DeviceDomain/include/Device/Input/InputDevice.h"
+#include "../../../../../DeviceDomain/include/Listener/DeviceListener.h"
 #include "../../Listenner/GearBoxShifter/GearBoxShifterListener.h"
 #include <memory>
 #include <iostream>

@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../Services/Listener/DeviceListener.h"
+#include "../../../../../DeviceDomain/include/Listener/DeviceListener.h"
 #include <string>
 
 namespace Infrastructure::Listener {
