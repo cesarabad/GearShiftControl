@@ -24,7 +24,7 @@ namespace Infrastructure::Device {
         ~GearBoxControlDevice() override = default;
 
         void write(const Core::Model::GearModel::Gear& gear) const override {
-			::Data::ConcurrentData::get_instance().get_shift_mutex().lock();
+			Services::Data::ConcurrentData::get_instance().get_shift_mutex().lock();
             std::string message = "X" + std::to_string(gear.rotation.x) +
                 ",Y" + std::to_string(gear.rotation.y) + "\n";
 
