@@ -13,7 +13,7 @@ int main() {
     using namespace Services::Data;
     using namespace Services::Mapping;
     using namespace Infrastructure::Configuration;
-    using namespace Services::Device;
+    using namespace ::Device;
 
     try {
 

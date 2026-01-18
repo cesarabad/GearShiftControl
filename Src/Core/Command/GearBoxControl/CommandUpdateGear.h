@@ -38,7 +38,7 @@ namespace Core::Commands::GearBoxControl {
       CommandUpdateGear() = default;  
       std::string message_;  
 
-      std::pair<float, float> decode_message(const std::string& message) {  
+      std::pair<float, float> decode_message(const std::string& message) const {  
           try {  
               size_t x_pos = message.find('X');  
               size_t y_pos = message.find('Y');  
