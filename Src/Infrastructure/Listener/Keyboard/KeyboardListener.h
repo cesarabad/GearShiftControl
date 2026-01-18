@@ -4,7 +4,7 @@
 
 namespace Infrastructure::Listener {
 
-    class KeyboardListener : public Services::Listener::DeviceListener {
+    class KeyboardListener : public Listener::DeviceListener {
     public:
         void listen() const override;
     };
