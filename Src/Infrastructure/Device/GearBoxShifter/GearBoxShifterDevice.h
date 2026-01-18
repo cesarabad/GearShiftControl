@@ -1,7 +1,7 @@
 #pragma once
 #include "../../../../../DeviceDomain/include/Device/Input/InputDevice.h"
 #include "../../../../../DeviceDomain/include/Listener/DeviceListener.h"
-#include "../../Listenner/GearBoxShifter/GearBoxShifterListener.h"
+#include "../../Listener/GearBoxShifter/GearBoxShifterListener.h"
 #include <memory>
 #include <iostream>
 #include <linux/input.h>
