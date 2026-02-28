@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Services/Security/safetyChecker.h"
+#include "../../Services/Security/SafetyChecker.h"
 #include "../../Services/Data/ConcurrentData.h"
 
 namespace Infrastructure::Security {

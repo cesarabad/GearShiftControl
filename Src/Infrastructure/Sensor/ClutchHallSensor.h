@@ -1,6 +1,10 @@
 #pragma once
 
-#include <wiringPi.h>
+#ifdef MOCK_WIRINGPI
+#include "wiringPiMock.h"   // mock para WSL/PC
+#else
+#include <wiringPi.h>       // real en Raspberry
+#endif
 #include <thread>
 #include <atomic>
 #include <unistd.h>

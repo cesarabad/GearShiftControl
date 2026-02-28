@@ -16,7 +16,7 @@ namespace Core::Commands::Keyboard {
 
         void execute() override {
 			if (Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.load() == Core::Model::Configuration::ShiftMode::Manual) {
-				std::cout << "Ya está en modo manual\n";
+				std::cout << "Ya esta en modo manual\n";
 				return;
 			}
             else if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 0) {

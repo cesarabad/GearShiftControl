@@ -25,7 +25,7 @@ namespace Infrastructure::Device {
             // Bloquea hasta que haya un evento
             ssize_t n = ::read(device_serial_fd_, &ev, sizeof(ev));
             if (n != sizeof(ev)) {
-                // Esto solo ocurrirá si hay error
+                // Esto solo ocurrirï¿½ si hay error
                 std::cerr << "Error leyendo el dispositivo" << std::endl;
                 ev.value = -1;
             }

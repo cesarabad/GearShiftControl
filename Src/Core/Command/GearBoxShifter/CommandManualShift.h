@@ -92,7 +92,7 @@ namespace Core::Commands::GearBoxShifter {
                 break;
 
             default:
-                std::cout << "Código de evento no reconocido: " << event_.code << std::endl;
+                std::cout << "CÃ³digo de evento no reconocido: " << event_.code << std::endl;
                 break;
             }
         }

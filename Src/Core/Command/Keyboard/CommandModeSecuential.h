@@ -16,7 +16,7 @@ namespace Core::Commands::Keyboard {
 
         void execute() override {
             if (Services::Data::ConcurrentData::get_instance().get_configuration().ShiftMode_.load() == Core::Model::Configuration::ShiftMode::Secuential) {
-                std::cout << "Ya está en modo secuencial\n";
+                std::cout << "Ya esta en modo secuencial\n";
                 return;
             }
             else if (Services::Data::ConcurrentData::get_instance().get_current_gear() != 0) {
