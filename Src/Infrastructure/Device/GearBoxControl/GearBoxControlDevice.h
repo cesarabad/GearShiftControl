@@ -2,19 +2,20 @@
 #include "../../../../../DeviceDomain/include/Device/Output/OutputDevice.h"
 #include "../../../Core/Model/Gear.h"
 #include "../../../Services/Data/ConcurrentData.h"
+#include "../../Listener/GearBoxControl/GearBoxControlListener.h"
 #include <memory>
 #include <string>
 #include <stdexcept>
 #include <unistd.h>
-
 namespace Infrastructure::Device {
 
     class GearBoxControlDevice : public ::Device::OutputDevice<Core::Model::GearModel::Gear>, public ::Device::InputDevice<std::string> {
     public:
         explicit GearBoxControlDevice(int device_serial_fd)
             : ::Device::Device(device_serial_fd), ::Device::OutputDevice<Core::Model::GearModel::Gear>(device_serial_fd),
-			::Device::InputDevice<std::string>(device_serial_fd, NULL)
-        {}
+			::Device::InputDevice<std::string>(device_serial_fd, std::make_unique<Infrastructure::Listener::GearBoxControlListener>()) {
+        }
+        
 
         GearBoxControlDevice(const GearBoxControlDevice&) = delete;
         GearBoxControlDevice& operator=(const GearBoxControlDevice&) = delete;
