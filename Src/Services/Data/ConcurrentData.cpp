@@ -4,7 +4,6 @@
 
 namespace Services::Data {
 
-    // Definición de variables estáticas
     std::unique_ptr<ConcurrentData> ConcurrentData::instance_ = nullptr;
     std::once_flag ConcurrentData::init_flag_;
 

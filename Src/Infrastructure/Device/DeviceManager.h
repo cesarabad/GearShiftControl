@@ -79,6 +79,9 @@ namespace Infrastructure::Device {
 			else if (function == READ_GEARBOX_SHIFTER) {
 				initialize_gearbox_shifter(symlink);
 			}
+            else if (function == GEARBOX_CONTROL) {
+                initialize_gearbox_control(symlink);
+            }
 			else {
 				throw std::invalid_argument("Unknown input device function: " + function);
 			}
@@ -116,7 +119,7 @@ namespace Infrastructure::Device {
 
         void initialize_gearbox_control(const std::string& symlink) {
             int fd = open(symlink.c_str(), O_WRONLY);
-            if (fd < 0) throw std::runtime_error("Cannot open gearbox device");
+            if (fd < 0) throw std::runtime_error("Cannot open gearbox control device");
             gearbox_ = std::make_unique<GearBoxControlDevice>(fd);
 		}
     };
