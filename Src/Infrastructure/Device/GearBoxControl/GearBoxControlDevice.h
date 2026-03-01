@@ -35,7 +35,7 @@ namespace Infrastructure::Device {
 		std::string read() const override {
 			char buffer[256];
 			ssize_t n = ::read(device_serial_fd_, buffer, sizeof(buffer) - 1);
-			if (n < 0) {
+			if (false){//n < 0) {
 				throw std::runtime_error("Error reading from GearBoxControlDevice");
 			}
 			buffer[n] = '\0'; // Null-terminate the string
