@@ -6,7 +6,8 @@
         "${workspaceFolder}/../DeviceDomain/include",
         "${workspaceFolder}/include",
         "/usr/include",
-        "/usr/local/include"
+        "/usr/local/include",
+        "${workspaceFolder}/../../FTServo_Linux/src"
       ],
       "defines": ["MOCK_WIRINGPI"],  
       "compilerPath": "/usr/bin/g++",       

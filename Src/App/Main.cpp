@@ -38,7 +38,8 @@ int main() {
 
         deviceManager.get_keyboard().set_active(true);
         deviceManager.get_gearbox_shifter().set_active(true);
-		deviceManager.get_gearbox().set_active(true);
+		deviceManager.get_servo_motor_x().set_active(true);
+		deviceManager.get_servo_motor_y().set_active(true);
 
         auto& clutchSensor = Infrastructure::Sensor::ClutchHallSensor::getInstance(0);
         clutchSensor.start();

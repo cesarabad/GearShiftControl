@@ -2,19 +2,21 @@
   {
     "Symlink": "/dev/GearBoxArduino",
     "Function": "GearboxControl",
-    "Description": "Arduino that is responsible for moving the servomotors that change gears in the gearbox",
-    "Type": "Output"
+    "Description": "Arduino that is responsible for moving the servomotors that change gears in the gearbox"
   },
   {
     "Symlink": "/dev/input/event0",
     "Function": "ReadKeyboard",
-    "Description": "Read keyboard inputs",
-    "Type": "Input"
+    "Description": "Read keyboard inputs"
   },
   {
-    "Symlink": "/dev/GearBoxShifter",
-    "Function": "ReadGearBoxShifter",
-    "Description": "Read GearBox shifter inputs",
-    "Type": "Input"
+    "Symlink": "/dev/ServoMotorX",
+    "Function": "ControlServoMotorX",
+    "Description": "Control Servo Motor X"
+  },
+  {
+    "Symlink": "/dev/ServoMotorY",
+    "Function": "ControlServoMotorY",
+    "Description": "Control Servo Motor Y"
   }
 ]

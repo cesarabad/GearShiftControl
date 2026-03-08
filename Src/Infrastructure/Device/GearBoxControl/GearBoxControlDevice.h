@@ -9,10 +9,10 @@
 #include <unistd.h>
 namespace Infrastructure::Device {
 
-    class GearBoxControlDevice : public ::Device::OutputDevice<Core::Model::GearModel::Gear>, public ::Device::InputDevice<std::string> {
+    class GearBoxControlDevice : public ::Device::OutputDevice<Core::Model::GearModel::Gear, void>, public ::Device::InputDevice<std::string> {
     public:
         explicit GearBoxControlDevice(int device_serial_fd)
-            : ::Device::Device(device_serial_fd), ::Device::OutputDevice<Core::Model::GearModel::Gear>(device_serial_fd),
+            : ::Device::Device(device_serial_fd), ::Device::OutputDevice<Core::Model::GearModel::Gear, void>(device_serial_fd),
 			::Device::InputDevice<std::string>(device_serial_fd, std::make_unique<Infrastructure::Listener::GearBoxControlListener>()) {
         }
         

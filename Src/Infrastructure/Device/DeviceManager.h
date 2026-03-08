@@ -5,20 +5,16 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <nlohmann/json.hpp>
+#include "SCServo.h"
+
 
 #include "./Keyboard/KeyboardDevice.h"
 #include "./GearBoxControl/GearBoxControlDevice.h"
 #include "./GearBoxShifter/GearBoxShifterDevice.h"
 #include "./DeviceConstants.h"
+#include "./ServoMotor/ServoMotorDevice.h"
 
 namespace Infrastructure::Device {
-
-    namespace DeviceConst {
-        namespace Type {
-            inline const std::string Input = "Input";
-            inline const std::string Output = "Output";
-        }
-    }
 
     class DeviceManager {
     public:
@@ -41,6 +37,14 @@ namespace Infrastructure::Device {
 			if (!gearbox_shifter_) throw std::runtime_error("GearBoxShifterDevice not initialized");
 			return *gearbox_shifter_;
         }
+        ServoMotorDevice& get_servo_motor_x() {
+            if (!servo_motor_x_) throw std::runtime_error("ServoMotorDevice X not initialized");
+            return *servo_motor_x_;
+        }
+        ServoMotorDevice& get_servo_motor_y() {
+            if (!servo_motor_y_) throw std::runtime_error("ServoMotorDevice Y not initialized");
+            return *servo_motor_y_;
+        }
 
     private:
         explicit DeviceManager(const std::string& jsonContent) {
@@ -55,21 +59,17 @@ namespace Infrastructure::Device {
             for (auto& dev : j) {
                 std::string symlink = dev["Symlink"];
                 std::string function = dev["Function"];
-                std::string type = dev["Type"];
 
-                if (type == INPUT) {
-                    initialize_input_device(function, symlink);
-				}
-				else if (type == OUTPUT) {
-					initialize_output_device(function, symlink);
+                if (symlink != "" && function != "") {
+                    initialize_device(function, symlink);
 				}
 				else {
-					throw std::invalid_argument("Unknown device type: " + type);
+					throw std::invalid_argument("Unknown device with symlink: " + symlink);
 				}
             }
         }
 
-        void initialize_input_device(const std::string& function, const std::string& symlink) {
+        void initialize_device(const std::string& function, const std::string& symlink) {
             
             using namespace Device::DeviceConst::Function;
 
@@ -82,28 +82,24 @@ namespace Infrastructure::Device {
             else if (function == GEARBOX_CONTROL) {
                 initialize_gearbox_control(symlink);
             }
+            else if (function == CONTROL_SERVO_MOTOR_X) {
+                initialize_servo_motor_x(symlink);
+            }
+            else if (function == CONTROL_SERVO_MOTOR_Y) {
+                initialize_servo_motor_y(symlink);
+            }
+
 			else {
 				throw std::invalid_argument("Unknown input device function: " + function);
 			}
         }
 
 
-
-        void initialize_output_device(const std::string& function, const std::string& symlink) {
-
-			using namespace Device::DeviceConst::Function;
-
-            if (function == GEARBOX_CONTROL) {
-                initialize_gearbox_control(symlink);
-            }
-            else {
-				throw std::invalid_argument("Unknown output device function: " + function);
-            }
-        }
-
         std::unique_ptr<KeyboardDevice> keyboard_;
         std::unique_ptr<GearBoxControlDevice> gearbox_;
 		std::unique_ptr<GearBoxShifterDevice> gearbox_shifter_;
+        std::unique_ptr<ServoMotorDevice> servo_motor_x_;
+        std::unique_ptr<ServoMotorDevice> servo_motor_y_;
 
         void initialize_keyboard(const std::string& symlink) {
             int fd = open(symlink.c_str(), O_RDONLY);
@@ -122,6 +118,18 @@ namespace Infrastructure::Device {
             if (fd < 0) throw std::runtime_error("Cannot open gearbox control device");
             gearbox_ = std::make_unique<GearBoxControlDevice>(fd);
 		}
+
+        void initialize_servo_motor_x(const std::string& symlink) {
+            int fd = open(symlink.c_str(), O_WRONLY);
+            if (fd < 0) throw std::runtime_error("Cannot open servo motor X device");
+            servo_motor_x_ = std::make_unique<ServoMotorDevice>(fd, 1);
+        }
+
+        void initialize_servo_motor_y(const std::string& symlink) {
+            int fd = open(symlink.c_str(), O_WRONLY);
+            if (fd < 0) throw std::runtime_error("Cannot open servo motor Y device");
+            servo_motor_y_ = std::make_unique<ServoMotorDevice>(fd, 2);
+        }
     };
 
 }
