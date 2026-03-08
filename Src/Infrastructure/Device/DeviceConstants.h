@@ -10,7 +10,6 @@ namespace Infrastructure::Device::DeviceConst {
         inline constexpr std::string_view READ_KEYBOARD = "ReadKeyboard";
         inline constexpr std::string_view GEARBOX_CONTROL = "GearboxControl";
         inline constexpr std::string_view READ_GEARBOX_SHIFTER = "ReadGearBoxShifter";
-        inline constexpr std::string_view CONTROL_SERVO_MOTOR_X = "ControlServoMotorX";
-        inline constexpr std::string_view CONTROL_SERVO_MOTOR_Y = "ControlServoMotorY";
+        inline constexpr std::string_view CONTROL_SERVO_MOTORS = "ControlServoMotors";
     }
 }

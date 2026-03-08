@@ -10,13 +10,8 @@
     "Description": "Read keyboard inputs"
   },
   {
-    "Symlink": "/dev/ServoMotorX",
-    "Function": "ControlServoMotorX",
-    "Description": "Control Servo Motor X"
-  },
-  {
-    "Symlink": "/dev/ServoMotorY",
-    "Function": "ControlServoMotorY",
-    "Description": "Control Servo Motor Y"
+    "Symlink": "/dev/ServoMotors",
+    "Function": "ControlServoMotors",
+    "Description": "Control Servo Motors for X and Y axis"
   }
 ]
